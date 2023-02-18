@@ -1,0 +1,10 @@
+<button id="language-selector-button"
+    class="text-xs font-semibold rounded-full py-1 px-3 flex items-center space-x-2 bg-secondary hover:bg-hover shadow-inner shadow-[#ffffff1a]"
+    type="button" aria-haspopup="true" aria-controls="language-selector-menu" [ariaExpanded]="open" (click)="toggle()">
+    EN
+</button>
+<div id="language-selector-menu" class="absolute right-0 w-32 bg-white rounded-lg shadow-lg py-2 mt-2" *ngIf="open"
+    aria-labelledby="language-selector-button" role="menu">\
+    <a (click)="selectEN()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">EN</a>
+    <a (click)="selectFR()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">FR</a>
+</div>

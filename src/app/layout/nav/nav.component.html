@@ -1,22 +1,23 @@
-<nav class="bg-secondary w-full h-fit">
+<nav class="bg-primary border-b-[1px] border-b-secondaryText w-full h-fit">
     <ul class="w-full h-12 flex items-center justify-around text-secondaryText">
-        <li class="w-1/4 h-full flex items-center justify-center hover:bg-slate-700">
+        <li class="w-1/4 h-full flex items-center justify-center hover:bg-hover">
             <a class="w-full h-full flex items-center justify-center">
                 <fa-icon [icon]="faHouse"></fa-icon>
                 <p class="ml-2" translate>nav.home</p>
             </a>
         </li>
-        <li class="w-1/4 h-full flex items-center justify-center hover:bg-slate-700">
+        <li class="w-1/4 h-full flex items-center justify-center hover:bg-hover">
             <a class="w-full h-full flex items-center justify-center" translate>
                 nav.section_1
             </a>
         </li>
-        <li class="w-1/4 h-full flex items-center justify-center hover:bg-slate-700">
+        <li class="w-1/4 h-full flex items-center justify-center hover:bg-hover">
             <a class="w-full h-full flex items-center justify-center" translate>
                 nav.section_2
             </a>
         </li>
         <li class="w-1/4 h-full flex items-center justify-center">
+            <app-language-picker></app-language-picker>
         </li>
     </ul>
 </nav>

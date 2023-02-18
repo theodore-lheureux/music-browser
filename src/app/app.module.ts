@@ -9,9 +9,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LanguagePickerComponent } from './layout/language-picker/language-picker.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, FooterComponent],
+  declarations: [AppComponent, NavComponent, FooterComponent, LanguagePickerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
