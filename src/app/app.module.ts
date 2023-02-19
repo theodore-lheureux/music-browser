@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LanguagePickerComponent } from './layout/language-picker/language-picker.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, FooterComponent, LanguagePickerComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    FooterComponent,
+    LanguagePickerComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,6 +32,7 @@ import { LanguagePickerComponent } from './layout/language-picker/language-picke
       },
     }),
     FontAwesomeModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

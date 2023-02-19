@@ -14,6 +14,7 @@ module.exports = {
         primaryText: "#8ecae6",
         secondaryText: "#fdfcdc",
         hover: "#fca311",
+        selected: "#495057",
       },
     },
   },
