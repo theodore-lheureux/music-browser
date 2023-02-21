@@ -33,7 +33,8 @@ export class SpotifyService {
         artist.name,
         artist.id,
         artist.popularity,
-        artist.images[0]?.url
+        artist.images[artist.images.length - 1].url,
+        artist.images[0].url
       );
     });
   }

@@ -9,7 +9,7 @@ export class IndexComponent implements OnInit {
   constructor(private spotify: SpotifyService) {}
 
   ngOnInit(): void {
-    this.spotify.getArtists('test', 10).then((artists) => {
+    this.spotify.getArtists('pink', 10).then((artists) => {
       console.log(artists);
     });
   }
