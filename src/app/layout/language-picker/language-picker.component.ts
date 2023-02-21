@@ -26,8 +26,8 @@ import { TranslateService } from '@ngx-translate/core';
         })
       ),
       state('closed', style({})),
-      transition('open => closed', [animate(80)]),
-      transition('closed => open', [animate(80)]),
+      transition('open => closed', [animate(110)]),
+      transition('closed => open', [animate(110)]),
     ]),
   ],
 })
@@ -59,15 +59,11 @@ export class LanguagePickerComponent implements OnInit {
     this.currentLang = 'FR';
   }
 
-  openCloseDone() {
-    if (this.open) {
-      this.menuOpen = true;
-    }
-  }
-
   openCloseStart() {
     if (!this.open) {
       this.menuOpen = false;
+    } else {
+      this.menuOpen = true;
     }
   }
 

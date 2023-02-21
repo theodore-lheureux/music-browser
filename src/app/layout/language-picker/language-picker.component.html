@@ -2,15 +2,14 @@
     <button id="language-selector-button"
         class="text-xs font-semibold rounded-md py-1 px-3 flex items-center space-x-2 bg-secondary hover:bg-hover outline-0 transition-colors"
         type="button" aria-haspopup="true" aria-controls="language-selector-menu" [ariaExpanded]="open"
-        [@openClose]="open ? 'open' : 'closed'" (@openClose.done)="openCloseDone()"
-        (@openClose.start)="openCloseStart()" (click)="toggle()">
+        [@openClose]="open ? 'open' : 'closed'" (@openClose.start)="openCloseStart()" (click)="toggle()">
         <span id="language-selector-button-span">{{currentLang}}</span>
         <fa-icon id="language-selector-button-icon" class="ml-4" [icon]="faChevronRight" class="fa-1x transition-all"
             [ngClass]="open ? 'rotate-90' : ''"></fa-icon>
     </button>
     <div class="absolute top-6 overflow-hidden" [ngClass]="menuOpen ? 'h-[72px]' : 'h-0'">
         <div id="language-selector-menu"
-            class="w-32 bg-secondary text-secondaryText font-semibold rounded-lg rounded-tl-none cursor-pointer flex flex-col justify-start transition-all ease-linear duration-200"
+            class="w-32 bg-secondary text-secondaryText font-semibold rounded-lg rounded-tl-none cursor-pointer flex flex-col justify-start transition-all ease-linear duration-200 delay-75"
             aria-labelledby="language-selector-button" role="menu" [ngClass]="menuOpen ? 'mt-0' : 'mt-[-100%]'">
             <a (click)="selectEN()"
                 class="px-4 py-2 text-sm hover:bg-hover hover:text-white rounded-tr-lg flex justify-between transition-colors"
