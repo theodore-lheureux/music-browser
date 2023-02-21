@@ -8,7 +8,7 @@ import { Artist } from 'src/app/models/artist.class';
 })
 export class ArtistComponent {
   faXmark = faXmark;
-  @Input() artist: Artist = new Artist('', '', 0, '');
+  @Input() artist!: Artist;
   @Input() deletable = false;
   @Output() deleteEvent = new EventEmitter<Artist>();
 
