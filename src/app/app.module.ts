@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LanguagePickerComponent } from './layout/language-picker/language-picker.component';
+import { IndexComponent } from './routes/index/index.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { LanguagePickerComponent } from './layout/language-picker/language-picke
     NavComponent,
     FooterComponent,
     LanguagePickerComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,
