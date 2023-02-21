@@ -1,25 +1,48 @@
 <section class="drop-shadow-md">
-    <button id="language-selector-button"
-        class="text-xs font-semibold rounded-md py-1 px-3 flex items-center space-x-2 bg-secondary hover:bg-hover outline-0 transition-colors"
-        type="button" aria-haspopup="true" aria-controls="language-selector-menu" [ariaExpanded]="open"
-        [@openClose]="open ? 'open' : 'closed'" (@openClose.start)="openCloseStart()" (click)="toggle()">
-        <span id="language-selector-button-span">{{currentLang}}</span>
-        <fa-icon id="language-selector-button-icon" class="ml-4" [icon]="faChevronRight" class="fa-1x transition-all"
-            [ngClass]="open ? 'rotate-90' : ''"></fa-icon>
+    <button
+        id="language-selector-button"
+        class="flex items-center space-x-2 rounded-md bg-secondary py-1 px-3 text-xs font-semibold outline-0 transition-colors hover:bg-hover"
+        type="button"
+        aria-haspopup="true"
+        aria-controls="language-selector-menu"
+        [ariaExpanded]="open"
+        [@openClose]="open ? 'open' : 'closed'"
+        (@openClose.start)="openCloseStart()"
+        (click)="toggle()"
+    >
+        <span id="language-selector-button-span">{{ currentLang }}</span>
+        <fa-icon
+            id="language-selector-button-icon"
+            class="ml-4"
+            [icon]="faChevronRight"
+            class="fa-1x transition-all"
+            [ngClass]="open ? 'rotate-90' : ''"
+        ></fa-icon>
     </button>
-    <div class="absolute top-6 overflow-hidden" [ngClass]="menuOpen ? 'h-[72px]' : 'h-0'">
-        <div id="language-selector-menu"
-            class="w-32 bg-secondary text-secondaryText font-semibold rounded-lg rounded-tl-none cursor-pointer flex flex-col justify-start transition-all ease-linear duration-200 delay-75"
-            aria-labelledby="language-selector-button" role="menu" [ngClass]="menuOpen ? 'mt-0' : 'mt-[-100%]'">
-            <a (click)="selectEN()"
-                class="px-4 py-2 text-sm hover:bg-hover hover:text-white rounded-tr-lg flex justify-between transition-colors"
-                [ngClass]="currentLang == 'EN' ? 'bg-selected' : ''">
+    <div
+        class="absolute top-6 overflow-hidden"
+        [ngClass]="menuOpen ? 'h-[72px]' : 'h-0'"
+    >
+        <div
+            id="language-selector-menu"
+            class="flex w-32 cursor-pointer flex-col justify-start rounded-lg rounded-tl-none bg-secondary font-semibold text-secondaryText transition-all delay-75 duration-200 ease-linear"
+            aria-labelledby="language-selector-button"
+            role="menu"
+            [ngClass]="menuOpen ? 'mt-0' : 'mt-[-100%]'"
+        >
+            <a
+                (click)="selectEN()"
+                class="flex justify-between rounded-tr-lg px-4 py-2 text-sm transition-colors hover:bg-hover hover:text-white"
+                [ngClass]="currentLang == 'EN' ? 'bg-selected' : ''"
+            >
                 <span>English</span>
                 <fa-icon [icon]="faCheck" *ngIf="currentLang == 'EN'"></fa-icon>
             </a>
-            <a (click)="selectFR()"
-                class="px-4 py-2 text-sm hover:bg-hover hover:text-white rounded-b-lg flex justify-between transition-colors"
-                [ngClass]="currentLang == 'FR' ? 'bg-selected' : ''">
+            <a
+                (click)="selectFR()"
+                class="flex justify-between rounded-b-lg px-4 py-2 text-sm transition-colors hover:bg-hover hover:text-white"
+                [ngClass]="currentLang == 'FR' ? 'bg-selected' : ''"
+            >
                 <span>Français</span>
                 <fa-icon [icon]="faCheck" *ngIf="currentLang == 'FR'"></fa-icon>
             </a>
