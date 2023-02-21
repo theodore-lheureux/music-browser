@@ -2,14 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Artist } from '../models/artist.class';
 import { Observable, firstValueFrom } from 'rxjs';
+import { clientId, clientSecret } from '../app.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpotifyService {
   private apiURL = 'https://api.spotify.com/v1';
-  private clientId = 'a9854cdb42a149d1b0d00332116be018';
-  private clientSecret = 'fa4018e789ff4bf59d3df7bcf5b4025f';
   private token: string | undefined;
 
   constructor(private http: HttpClient) {}
@@ -52,7 +51,7 @@ export class SpotifyService {
           {
             headers: {
               Authorization: `Basic ${window.btoa(
-                `${this.clientId}:${this.clientSecret}`
+                `${clientId}:${clientSecret}`
               )}`,
               'Content-Type': 'application/x-www-form-urlencoded',
             },
