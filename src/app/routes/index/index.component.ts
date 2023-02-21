@@ -1,7 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
 })
-export class IndexComponent {}
+export class IndexComponent implements OnInit {
+  constructor(private spotify: SpotifyService) {}
+
+  ngOnInit(): void {
+    this.spotify.getArtists('test', 10).then((artists) => {
+      console.log(artists);
+    });
+  }
+}
