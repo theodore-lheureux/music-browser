@@ -1,6 +1,5 @@
 import {
   Component,
-  Input,
   Output,
   EventEmitter,
   HostListener,
@@ -8,6 +7,8 @@ import {
   ViewChildren,
   AfterViewInit,
   OnInit,
+  QueryList,
+  ElementRef,
 } from '@angular/core';
 import {
   faCircleXmark,
@@ -27,7 +28,7 @@ export class SearchbarComponent
   faMagnifyingGlass = faMagnifyingGlass;
   faCircleXmark = faCircleXmark;
   @Output() closeEvent = new EventEmitter<Artist | undefined>();
-  @ViewChildren('searchInput') searchInputElement: any;
+  @ViewChildren('searchInput') searchInputElement!: QueryList<ElementRef>;
   searchValue = '';
   loading = false;
   selectedIndex = -1;
