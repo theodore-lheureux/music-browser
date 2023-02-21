@@ -12,6 +12,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LanguagePickerComponent } from './layout/language-picker/language-picker.component';
 import { IndexComponent } from './routes/index/index.component';
+import { SearchbarComponent } from './shared/searchbar/searchbar.component';
+import { ArtistComponent } from './shared/artist/artist.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { IndexComponent } from './routes/index/index.component';
     FooterComponent,
     LanguagePickerComponent,
     IndexComponent,
+    SearchbarComponent,
+    ArtistComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { IndexComponent } from './routes/index/index.component';
     }),
     FontAwesomeModule,
     BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
