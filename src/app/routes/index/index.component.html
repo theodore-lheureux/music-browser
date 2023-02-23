@@ -1,1 +1,18 @@
-<p>index works!</p>
+<aside
+    class="fixed flex h-[94.5vh] w-1/3 flex-col border-r-[1px] border-secondaryText p-2 lg:w-1/4 xl:w-1/5"
+>
+    <section>
+        <button
+            class="h-10 w-full cursor-text rounded-md bg-secondary text-secondaryText hover:bg-hover"
+            (click)="showSearchbar()"
+        >
+            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+            <span class="ml-2 mr-2" translate>search.artist</span>
+        </button>
+    </section>
+    <section>
+        <div *ngFor="let artist of favorites" class="mt-2">
+            {{ artist.name }}
+        </div>
+    </section>
+</aside>

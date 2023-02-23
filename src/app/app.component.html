@@ -1,7 +1,9 @@
 <app-nav></app-nav>
 
-<main class="bg-primary pt-12 text-secondaryText">
+<main class="bg-primary pt-[5.5vh] text-secondaryText">
     <router-outlet></router-outlet>
 </main>
+
+<app-searchbar *ngIf="searchbarShown.isShown"></app-searchbar>
 
 <div class="h-[150vh] bg-primary"></div>

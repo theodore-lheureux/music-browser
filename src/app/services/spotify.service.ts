@@ -16,7 +16,7 @@ export class SpotifyService {
   public async getArtists(query: string, limit: number): Promise<Artist[]> {
     const response = await this.executeRequest<ArtistsResponse>(() =>
       this.http.get<ArtistsResponse>(
-        `${this.apiURL}/search?q=${query}&type=artist&limit=${limit}`,
+        `${this.apiURL}/search?q=${query}&type=artist&limit=${limit ?? 10}`,
         {
           headers: {
             Authorization: `Bearer ${this.token}`,
@@ -36,6 +36,10 @@ export class SpotifyService {
         artist.images[0].url
       );
     });
+  }
+
+  public async getArtist(query: string): Promise<Artist | undefined> {
+    return this.getArtists(query, 1).then((artists) => artists[0]);
   }
 
   private async authorize(): Promise<boolean> {
