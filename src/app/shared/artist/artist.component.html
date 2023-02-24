@@ -1,16 +1,36 @@
 <div
     [ngClass]="
-        artist.selected
+        artist.selected && selectable
             ? 'selectedArtist scale-[101%] bg-slate-500'
-            : 'bg-tertiary'
+            : backgroundColor
     "
-    class="mb-2 flex h-full w-full cursor-pointer select-none rounded-md p-4 align-middle transition-transform"
+    class="mb-2 flex h-full w-full cursor-pointer select-none rounded-md p-{{
+        padding
+    }} align-middle transition-transform"
 >
-    <img class="h-12 w-12 flex-none rounded-md" [src]="artist.image" />
+    <img
+        class="h-{{ imgSize }} w-{{ imgSize }} flex-none rounded-{{
+            imgRoundness
+        }}"
+        [src]="artist.image"
+    />
     <div class="ml-4 flex flex-none flex-col justify-center">
-        <div class="text-lg text-secondaryText">{{ artist.name }}</div>
+        <div class="text-{{ textSize }} text-secondaryText">
+            {{ artist.name }}
+        </div>
     </div>
     <div class="flex-grow"></div>
+    <div
+        *ngIf="showStar"
+        class="mr-3 flex flex-none flex-col justify-center align-middle text-gray-400 hover:text-secondaryText"
+    >
+        <fa-icon
+            (click)="toggleFavorite(); $event.stopPropagation()"
+            [icon]="isFavorite() ? faStarSolid : faStarRegular"
+            [class.text-yellow-400]="isFavorite()"
+            [class.hover:text-yellow-600]="isFavorite()"
+        ></fa-icon>
+    </div>
     <div
         *ngIf="deletable"
         class="mr-3 flex flex-none flex-col justify-center align-middle text-gray-400 hover:text-secondaryText"

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ArtistService } from './services/artist.service';
+import { FavoritesService } from './services/favorites.service';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +11,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     public translator: TranslateService,
-    private artistService: ArtistService
+    private favorites: FavoritesService
   ) {}
 
   ngOnInit(): void {
-    this.searchbarShown = this.artistService.searchbarShown;
+    this.searchbarShown = this.favorites.searchbarShown;
   }
 }

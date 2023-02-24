@@ -1,7 +1,5 @@
 import {
   Component,
-  Output,
-  EventEmitter,
   HostListener,
   AfterViewChecked,
   ViewChildren,
@@ -16,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Artist } from '../../models/artist.class';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -27,7 +26,6 @@ export class SearchbarComponent
 {
   faMagnifyingGlass = faMagnifyingGlass;
   faCircleXmark = faCircleXmark;
-  @Output() closeEvent = new EventEmitter<Artist | undefined>();
   @ViewChildren('searchInput') searchInputElement!: QueryList<ElementRef>;
   searchValue = '';
   loading = false;
@@ -35,7 +33,10 @@ export class SearchbarComponent
   recentArtists: Artist[];
   artists: Artist[];
 
-  constructor(private spotify: SpotifyService) {
+  constructor(
+    private spotify: SpotifyService,
+    private favorites: FavoritesService
+  ) {
     this.recentArtists = JSON.parse(
       window.localStorage.getItem('recentSearches') ?? '[]'
     );
@@ -108,12 +109,13 @@ export class SearchbarComponent
     this.addArtist(undefined);
   }
 
-  bgClick(event: MouseEvent) {
-    if (event.target === event.currentTarget) this.closeSearch();
+  addArtist(artist: Artist | undefined) {
+    this.favorites.currentArtist = artist;
+    this.favorites.searchbarShown.isShown = false;
   }
 
-  addArtist(artist: Artist | undefined) {
-    this.closeEvent.emit(artist);
+  bgClick(event: MouseEvent) {
+    if (event.target === event.currentTarget) this.closeSearch();
   }
 
   scrollToSelected() {

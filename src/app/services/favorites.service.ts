@@ -4,7 +4,7 @@ import { Artist } from '../models/artist.class';
 @Injectable({
   providedIn: 'root',
 })
-export class ArtistService {
+export class FavoritesService {
   private favorites: Artist[] = [];
   searchbarShown = { isShown: false };
 
@@ -15,13 +15,25 @@ export class ArtistService {
   }
 
   addFavorite(artist: Artist): void {
+    if (this.isFavorite(artist.id)) return;
+
+    artist.selected = false;
     this.favorites.push(artist);
   }
 
   removeFavorite(artist: Artist): void {
-    const index = this.favorites.indexOf(artist);
-    if (index > -1) {
-      this.favorites.splice(index, 1);
+    for (let i = 0; i < this.favorites.length; i++) {
+      if (this.favorites[i].id === artist.id) {
+        this.favorites.splice(i, 1);
+        return;
+      }
     }
+  }
+
+  isFavorite(id: string): boolean {
+    for (const artist of this.favorites) {
+      if (artist.id === id) return true;
+    }
+    return false;
   }
 }

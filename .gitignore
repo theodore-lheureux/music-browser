@@ -43,3 +43,5 @@ Thumbs.db
 
 # Api keys
 src/app/app.config.ts
+
+.fake

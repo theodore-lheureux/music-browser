@@ -14,13 +14,13 @@ export class SpotifyService {
   constructor(private http: HttpClient) {}
 
   public async getArtists(query: string, limit: number): Promise<Artist[]> {
+    console.log(query);
+
     const response = await this.executeRequest<ArtistsResponse>(() =>
       this.http.get<ArtistsResponse>(
-        `${this.apiURL}/search?q=${query}&type=artist&limit=${limit ?? 10}`,
+        `${this.apiURL}/search?q=${query}&type=artist&limit=${limit}`,
         {
-          headers: {
-            Authorization: `Bearer ${this.token}`,
-          },
+          headers: { Authorization: `Bearer ${this.token}` },
         }
       )
     );
@@ -29,17 +29,35 @@ export class SpotifyService {
 
     return response.artists.items.map((artist) => {
       return new Artist(
-        artist.name,
         artist.id,
+        artist.name,
         artist.popularity,
-        artist.images[artist.images.length - 1].url,
-        artist.images[0].url
+        this.getImageUrl(artist.images),
+        this.getImageUrlXL(artist.images)
       );
     });
   }
 
   public async getArtist(query: string): Promise<Artist | undefined> {
     return this.getArtists(query, 1).then((artists) => artists[0]);
+  }
+
+  public async getArtistById(id: string): Promise<Artist | undefined> {
+    const response = await this.executeRequest<ArtistResponse>(() =>
+      this.http.get<ArtistResponse>(`${this.apiURL}/artists/${id}`, {
+        headers: { Authorization: `Bearer ${this.token}` },
+      })
+    );
+
+    if (!response) return undefined;
+
+    return new Artist(
+      response.id,
+      response.name,
+      response.popularity,
+      this.getImageUrl(response.images),
+      this.getImageUrlXL(response.images)
+    );
   }
 
   private async authorize(): Promise<boolean> {
@@ -83,10 +101,29 @@ export class SpotifyService {
       if (!authorized) return undefined;
     }
 
-    return firstValueFrom(request()).catch((e) => {
-      console.error(e);
-      return undefined;
-    });
+    console.log(request);
+
+    return firstValueFrom(request());
+  }
+
+  private getImageUrl(images: { url: string }[]): string {
+    if (images.length > 1) {
+      return images[images.length - 1].url;
+    } else if (images.length === 1) {
+      return images[0].url;
+    }
+
+    return '';
+  }
+
+  private getImageUrlXL(images: { url: string }[]): string {
+    if (images.length > 1) {
+      return images[0].url;
+    } else if (images.length === 1) {
+      return images[0].url;
+    }
+
+    return '';
   }
 }
 
@@ -103,4 +140,13 @@ interface ArtistsResponse {
       }[];
     }[];
   };
+}
+
+interface ArtistResponse {
+  name: string;
+  id: string;
+  popularity: number;
+  images: {
+    url: string;
+  }[];
 }
