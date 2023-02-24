@@ -13,10 +13,14 @@ export class SpotifyService {
 
   constructor(private http: HttpClient) {}
 
-  public async getArtists(query: string, limit = 10): Promise<Artist[]> {
+  public async getArtists(
+    query: string,
+    limit = 10,
+    offset = 0
+  ): Promise<Artist[]> {
     const response = await this.executeRequest<ArtistsResponse>(() =>
       this.http.get<ArtistsResponse>(
-        `${this.apiURL}/search?q=${query}&type=artist&limit=${limit}`,
+        `${this.apiURL}/search?q=${query}&type=artist&limit=${limit}&offset=${offset}`,
         {
           headers: { Authorization: `Bearer ${this.token}` },
         }
@@ -56,6 +60,27 @@ export class SpotifyService {
       this.getImageUrl(response.images),
       this.getImageUrlXL(response.images)
     );
+  }
+
+  public async getArtistAlbums(
+    id: string,
+    limit = 20,
+    offset = 0
+  ): Promise<{ name: string; id: string }[]> {
+    const response = await this.executeRequest<ArtistAlbumsResponse>(() =>
+      this.http.get<ArtistAlbumsResponse>(
+        `${this.apiURL}/artists/${id}/albums?limit=${limit}?offset=${offset}`,
+        {
+          headers: { Authorization: `Bearer ${this.token}` },
+        }
+      )
+    );
+
+    if (!response) return [];
+
+    return response.items.map((album) => {
+      return { name: album.name, id: album.id };
+    });
   }
 
   private async authorize(): Promise<boolean> {
@@ -140,4 +165,16 @@ interface ArtistsResponse {
   artists: {
     items: ArtistResponse[];
   };
+}
+
+interface AlbumResponse {
+  name: string;
+  id: string;
+  images: {
+    url: string;
+  }[];
+}
+
+interface ArtistAlbumsResponse {
+  items: AlbumResponse[];
 }
