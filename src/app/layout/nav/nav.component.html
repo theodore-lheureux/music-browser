@@ -2,28 +2,19 @@
     class="fixed h-[5.5vh] w-full select-none border-b-[1px] border-b-secondaryText bg-primary"
 >
     <ul
-        class="flex h-full w-full items-center justify-around text-secondaryText"
+        class="flex h-full w-full items-center justify-between text-secondaryText"
     >
         <li
             class="flex h-full w-1/4 cursor-pointer items-center justify-center hover:bg-hover"
         >
-            <a class="flex h-full w-full items-center justify-center">
+            <a
+                class="flex h-full w-full items-center justify-center"
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+            >
                 <fa-icon [icon]="faHouse"></fa-icon>
                 <p class="ml-2" translate>nav.home</p>
-            </a>
-        </li>
-        <li
-            class="flex h-full w-1/4 cursor-pointer items-center justify-center hover:bg-hover"
-        >
-            <a class="flex h-full w-full items-center justify-center" translate>
-                nav.section_1
-            </a>
-        </li>
-        <li
-            class="flex h-full w-1/4 cursor-pointer items-center justify-center hover:bg-hover"
-        >
-            <a class="flex h-full w-full items-center justify-center" translate>
-                nav.section_2
             </a>
         </li>
         <li class="flex h-full w-1/4 items-center justify-center">

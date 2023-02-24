@@ -10,6 +10,10 @@ const routes: Routes = [
     component: IndexComponent,
   },
   {
+    path: 'artist/:id',
+    component: ArtistComponent,
+  },
+  {
     path: '',
     redirectTo: 'index',
     pathMatch: 'full',

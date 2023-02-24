@@ -62,12 +62,12 @@
                 *ngIf="artists.length > 0 && searchValue.length > 2 && !loading"
                 class="flex max-h-[450px] min-h-[96px] w-full flex-shrink flex-col overflow-y-auto border-t-gray-500 pt-2 pr-2 pl-2"
             >
-                <app-artist
+                <app-artist-card
                     *ngFor="let artist of artists"
                     (mouseenter)="selectArtist(artist)"
                     (click)="selectArtist(artist); submit()"
                     [artist]="artist"
-                ></app-artist>
+                ></app-artist-card>
             </div>
             <div
                 *ngIf="
@@ -81,14 +81,14 @@
                 >
                     search.recent
                 </h2>
-                <app-artist
+                <app-artist-card
                     *ngFor="let artist of artists"
                     (mouseenter)="selectArtist(artist)"
                     (click)="selectArtist(artist); submit()"
                     [artist]="artist"
                     [deletable]="true"
                     (deleteEvent)="deleteRecent($event)"
-                ></app-artist>
+                ></app-artist-card>
             </div>
             <div
                 *ngIf="

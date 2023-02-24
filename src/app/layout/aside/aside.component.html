@@ -17,12 +17,11 @@
     </section>
     <section>
         <div *ngFor="let artist of favoritesList" class="mt-2">
-            <app-artist
+            <app-artist-card
                 class="h-20 bg-secondary"
                 [artist]="artist"
-                [selectable]="true"
                 backgroundColor="bg-secondary"
-            ></app-artist>
+            ></app-artist-card>
         </div>
     </section>
 </aside>

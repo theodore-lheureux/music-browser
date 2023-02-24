@@ -16,7 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LanguagePickerComponent } from './layout/language-picker/language-picker.component';
 import { IndexComponent } from './routes/index/index.component';
 import { SearchbarComponent } from './shared/searchbar/searchbar.component';
-import { ArtistCardComponent } from './shared/artist/artist-card.component';
+import { ArtistCardComponent } from './shared/artist-card/artist-card.component';
 import { FormsModule } from '@angular/forms';
 import { AsideComponent } from './layout/aside/aside.component';
 import { ArtistComponent } from './routes/artist/artist.component';
@@ -29,8 +29,9 @@ import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.co
     FooterComponent,
     LanguagePickerComponent,
     IndexComponent,
-    SearchbarComponent,
     ArtistComponent,
+    SearchbarComponent,
+    ArtistCardComponent,
     AsideComponent,
     PageNotFoundComponent,
   ],

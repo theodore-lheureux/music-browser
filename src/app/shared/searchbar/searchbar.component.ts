@@ -91,7 +91,7 @@ export class SearchbarComponent
       JSON.stringify(this.recentArtists)
     );
 
-    this.addArtist(this.artists[this.selectedIndex]);
+    this.closeSearch();
   }
 
   deleteRecent(artist: Artist) {
@@ -106,11 +106,6 @@ export class SearchbarComponent
   }
 
   closeSearch() {
-    this.addArtist(undefined);
-  }
-
-  addArtist(artist: Artist | undefined) {
-    this.favorites.currentArtist = artist;
     this.favorites.searchbarShown.isShown = false;
   }
 
