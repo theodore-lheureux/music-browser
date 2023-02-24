@@ -5,10 +5,10 @@ import { Artist } from '../models/artist.class';
   providedIn: 'root',
 })
 export class FavoritesService {
-  private favorites: Artist[] = [];
+  private favorites: Artist[] = JSON.parse(
+    localStorage.getItem('favorites') ?? '[]'
+  );
   searchbarShown = { isShown: false };
-
-  currentArtist: Artist | undefined;
 
   getFavorites(): Artist[] {
     return this.favorites;
@@ -21,12 +21,15 @@ export class FavoritesService {
     copy.selected = false;
 
     this.favorites.push(copy);
+
+    localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
 
   removeFavorite(artist: Artist): void {
     for (let i = 0; i < this.favorites.length; i++) {
       if (this.favorites[i].id === artist.id) {
         this.favorites.splice(i, 1);
+        localStorage.setItem('favorites', JSON.stringify(this.favorites));
         return;
       }
     }
