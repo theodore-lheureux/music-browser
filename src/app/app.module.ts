@@ -4,6 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CacheInterceptor } from './interceptors/cache-interceptor';
+import { CacheResolverService } from './services/cache-resolver.service';
 import { NavComponent } from './layout/nav/nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -42,7 +45,14 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    CacheResolverService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
