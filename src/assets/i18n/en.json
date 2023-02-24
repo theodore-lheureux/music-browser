@@ -5,6 +5,10 @@
     "section_2": "Section 2"
   },
   "search": {
-    "artist": "Search for Artist"
+    "button": "Search for Artist",
+    "no_recent": "No recent searches",
+    "no_result": "No results found",
+    "prompt": "Search for an artist",
+    "recent": "Recent searches"
   }
 }

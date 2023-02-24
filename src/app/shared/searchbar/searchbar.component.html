@@ -18,7 +18,7 @@
                     type="text"
                     id="text"
                     class="no ml-4 flex-grow bg-secondary text-sm focus:outline-none"
-                    placeholder="Search for an artist"
+                    placeholder="{{ 'search.prompt' | translate }}"
                     autocomplete="off"
                     [(ngModel)]="searchValue"
                     (input)="search()"
@@ -55,7 +55,7 @@
                 "
                 class="flex h-[147px] w-full flex-grow items-center justify-center"
             >
-                <div class="text-secondaryText">No recent searches</div>
+                <div class="text-secondaryText" translate>search.no_recent</div>
             </div>
             <div
                 *ngIf="artists.length > 0 && searchValue.length > 2 && !loading"
@@ -74,11 +74,12 @@
                 "
                 class="flex max-h-[450px] min-h-[96px] w-full flex-shrink flex-col overflow-y-auto border-t-gray-500 pt-4 pr-2 pl-2"
             >
-                <div
+                <h2
                     class="mb-2 pb-3 pr-2 text-lg font-medium text-secondaryText"
+                    translate
                 >
-                    Recent searches
-                </div>
+                    search.recent
+                </h2>
                 <app-artist
                     *ngFor="let artist of artists"
                     (mouseenter)="selectArtist(artist)"
@@ -96,7 +97,7 @@
                 <div
                     class="flex h-[147px] w-full flex-grow items-center justify-center"
                 >
-                    <div class="text-secondaryText">No results found</div>
+                    <p class="text-secondaryText" translate>search.no_result</p>
                 </div>
             </div>
             <div
