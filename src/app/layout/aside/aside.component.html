@@ -1,0 +1,28 @@
+<aside
+    class="fixed flex h-[94.5vh] w-1/3 flex-col border-r-[1px] border-secondaryText p-2 lg:w-1/4 xl:w-1/5"
+>
+    <section>
+        <button
+            class="h-10 w-full cursor-text rounded-md bg-secondary text-secondaryText shadow-inner hover:bg-hover"
+            (click)="showSearchbar()"
+            id="searchbar-button"
+            aria-label="Open searchbar"
+            aria-haspopup="true"
+            [ariaExpanded]="favorites.searchbarShown.isShown"
+            aria-controls="searchbar"
+        >
+            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+            <span class="ml-2 mr-2" translate>search.button</span>
+        </button>
+    </section>
+    <section>
+        <div *ngFor="let artist of favoritesList" class="mt-2">
+            <app-artist
+                class="h-20 bg-secondary"
+                [artist]="artist"
+                [selectable]="true"
+                backgroundColor="bg-secondary"
+            ></app-artist>
+        </div>
+    </section>
+</aside>

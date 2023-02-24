@@ -34,6 +34,7 @@
             <div
                 *ngIf="loading"
                 class="flex h-fit w-full flex-grow animate-pulse flex-col items-center justify-center pt-2 pr-2 pl-2"
+                aria-busy="true"
             >
                 <div
                     *ngFor="let _ of [].constructor(3)"

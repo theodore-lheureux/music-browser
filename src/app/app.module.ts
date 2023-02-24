@@ -18,6 +18,7 @@ import { IndexComponent } from './routes/index/index.component';
 import { SearchbarComponent } from './shared/searchbar/searchbar.component';
 import { ArtistComponent } from './shared/artist/artist.component';
 import { FormsModule } from '@angular/forms';
+import { AsideComponent } from './layout/aside/aside.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     IndexComponent,
     SearchbarComponent,
     ArtistComponent,
+    AsideComponent,
   ],
   imports: [
     BrowserModule,
