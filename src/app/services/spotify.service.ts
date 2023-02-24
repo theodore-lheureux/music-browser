@@ -70,7 +70,7 @@ export class SpotifyService {
   ): Promise<Album[]> {
     const response = await this.executeRequest<ArtistAlbumsResponse>(() =>
       this.http.get<ArtistAlbumsResponse>(
-        `${this.apiURL}/artists/${id}/albums?limit=${limit}?offset=${offset}`,
+        `${this.apiURL}/artists/${id}/albums?limit=${limit}&offset=${offset}&include_groups=album&market=CA`,
         {
           headers: { Authorization: `Bearer ${this.token}` },
         }
@@ -83,6 +83,7 @@ export class SpotifyService {
       return new Album(
         album.id,
         album.name,
+        new Date(album.release_date),
         this.getImageUrl(album.images),
         this.getImageUrlXL(album.images)
       );
@@ -176,6 +177,7 @@ interface ArtistsResponse {
 interface AlbumResponse {
   name: string;
   id: string;
+  release_date: string;
   images: {
     url: string;
   }[];

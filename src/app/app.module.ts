@@ -21,6 +21,8 @@ import { FormsModule } from '@angular/forms';
 import { AsideComponent } from './layout/aside/aside.component';
 import { ArtistComponent } from './routes/artist/artist.component';
 import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.component';
+import { AlbumCardComponent } from './shared/album-card/album-card.component';
+import { SearchButtonComponent } from './shared/search-button/search-button.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.co
     ArtistCardComponent,
     AsideComponent,
     PageNotFoundComponent,
+    AlbumCardComponent,
+    SearchButtonComponent,
   ],
   imports: [
     BrowserModule,

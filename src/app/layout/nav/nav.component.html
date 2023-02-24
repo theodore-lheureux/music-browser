@@ -1,5 +1,5 @@
 <nav
-    class="fixed h-[5.5vh] w-full select-none border-b-[1px] border-b-secondaryText bg-primary"
+    class="fixed z-40 h-[5.5vh] w-full select-none border-b-[1px] border-b-secondaryText bg-primary"
 >
     <ul
         class="flex h-full w-full items-center justify-between text-secondaryText"
@@ -14,10 +14,13 @@
                 [routerLinkActiveOptions]="{ exact: true }"
             >
                 <fa-icon [icon]="faHouse"></fa-icon>
-                <p class="ml-2" translate>nav.home</p>
+                <p class="ml-2 hidden md:block" translate>nav.home</p>
             </a>
         </li>
-        <li class="flex h-full w-1/4 items-center justify-center">
+        <li class="h-full w-full p-2 pr-6 md:hidden">
+            <app-search-button></app-search-button>
+        </li>
+        <li class="flex h-full w-1/4 flex-initial items-center justify-center">
             <app-language-picker></app-language-picker>
         </li>
     </ul>

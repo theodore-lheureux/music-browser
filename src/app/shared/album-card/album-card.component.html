@@ -1,0 +1,15 @@
+<div
+    class="flex h-full w-full cursor-pointer select-none flex-col items-center justify-between rounded-lg bg-secondary p-4 shadow-inner shadow-[#FFFFFF11] drop-shadow-xl transition-all duration-300 hover:bg-gray-500"
+>
+    <img
+        [src]="album.imageXL"
+        [alt]="album.name"
+        class="w-full rounded-md drop-shadow-xl"
+        draggable="false"
+    />
+    <p
+        class="mt-4 w-[80%] overflow-hidden text-ellipsis whitespace-nowrap text-center font-bold"
+    >
+        {{ album.name }}
+    </p>
+</div>

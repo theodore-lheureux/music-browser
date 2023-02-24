@@ -17,10 +17,14 @@
         [alt]="artist.name"
         draggable="false"
     />
-    <div class="ml-4 flex flex-none flex-col justify-center">
-        <div class="text-{{ textSize }} text-secondaryText">
+    <div class="ml-4 flex w-[60%] flex-shrink flex-col justify-center">
+        <p
+            class="text-{{
+                textSize
+            }} text-secondaryText overflow-hidden text-ellipsis whitespace-nowrap"
+        >
             {{ artist.name }}
-        </div>
+        </p>
     </div>
     <div class="flex-grow"></div>
     <div

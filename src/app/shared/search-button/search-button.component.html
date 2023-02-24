@@ -1,0 +1,12 @@
+<button
+    class="h-full w-full cursor-text rounded-md bg-secondary text-secondaryText shadow-inner hover:bg-hover md:h-10"
+    (click)="showSearchbar()"
+    id="searchbar-button"
+    aria-label="Open searchbar"
+    aria-haspopup="true"
+    [ariaExpanded]="favorites.searchbarShown.isShown"
+    aria-controls="searchbar"
+>
+    <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+    <span class="ml-2 mr-2" translate>search.button</span>
+</button>

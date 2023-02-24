@@ -20,19 +20,19 @@
         ></fa-icon>
     </button>
     <div
-        class="absolute top-6 overflow-hidden"
+        class="absolute -left-[72px] top-6 overflow-hidden lg:left-0"
         [ngClass]="menuOpen ? 'h-[72px]' : 'h-0'"
     >
         <div
             id="language-selector-menu"
-            class="flex w-32 cursor-pointer flex-col justify-start rounded-lg rounded-tl-none bg-secondary font-semibold text-secondaryText transition-all delay-75 duration-200 ease-linear"
+            class="flex w-32 cursor-pointer flex-col justify-start rounded-lg rounded-tr-none bg-secondary font-semibold text-secondaryText transition-all delay-75 duration-200 ease-linear lg:rounded-tr-lg lg:rounded-tl-none"
             aria-labelledby="language-selector-button"
             role="menu"
             [ngClass]="menuOpen ? 'mt-0' : 'mt-[-100%]'"
         >
             <a
                 (click)="selectEN()"
-                class="flex justify-between rounded-tr-lg px-4 py-2 text-sm transition-colors hover:bg-hover hover:text-white"
+                class="flex justify-between rounded-tl-lg px-4 py-2 text-sm transition-colors hover:bg-hover hover:text-white lg:rounded-tr-lg lg:rounded-tl-none"
                 [ngClass]="currentLang == 'EN' ? 'bg-selected' : ''"
             >
                 <span>English</span>
