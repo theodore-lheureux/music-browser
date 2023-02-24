@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Artist } from '../models/artist.class';
 import { Observable, firstValueFrom } from 'rxjs';
 import { clientId, clientSecret } from '../app.config';
+import { Album } from '../models/album.class';
 
 @Injectable({
   providedIn: 'root',
@@ -66,7 +67,7 @@ export class SpotifyService {
     id: string,
     limit = 20,
     offset = 0
-  ): Promise<{ name: string; id: string }[]> {
+  ): Promise<Album[]> {
     const response = await this.executeRequest<ArtistAlbumsResponse>(() =>
       this.http.get<ArtistAlbumsResponse>(
         `${this.apiURL}/artists/${id}/albums?limit=${limit}?offset=${offset}`,
@@ -79,7 +80,12 @@ export class SpotifyService {
     if (!response) return [];
 
     return response.items.map((album) => {
-      return { name: album.name, id: album.id };
+      return new Album(
+        album.id,
+        album.name,
+        this.getImageUrl(album.images),
+        this.getImageUrlXL(album.images)
+      );
     });
   }
 

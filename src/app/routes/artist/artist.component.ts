@@ -8,8 +8,8 @@ import { SpotifyService } from 'src/app/services/spotify.service';
   templateUrl: './artist.component.html',
 })
 export class ArtistComponent implements OnInit {
-  artist: Artist | undefined;
   artistId: string;
+  artist: Artist | undefined;
 
   constructor(
     private spotify: SpotifyService,
