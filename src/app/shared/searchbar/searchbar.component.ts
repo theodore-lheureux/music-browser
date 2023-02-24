@@ -62,13 +62,7 @@ export class SearchbarComponent
     }
 
     this.loading = true;
-
-    this.artists = await this.spotify.getArtists(this.searchValue, 10);
-
-    this.artists = this.artists.sort((a, b) => {
-      return b.listeners - a.listeners;
-    });
-
+    this.artists = await this.spotify.getArtists(this.searchValue);
     this.loading = false;
 
     this.selectFirstOrNone();
@@ -76,7 +70,7 @@ export class SearchbarComponent
 
   async submit() {
     if (this.selectedIndex === -1) {
-      this.addArtist(undefined);
+      this.closeSearch();
       return;
     }
 

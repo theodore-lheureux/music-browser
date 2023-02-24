@@ -13,9 +13,7 @@ export class SpotifyService {
 
   constructor(private http: HttpClient) {}
 
-  public async getArtists(query: string, limit: number): Promise<Artist[]> {
-    console.log(query);
-
+  public async getArtists(query: string, limit = 10): Promise<Artist[]> {
     const response = await this.executeRequest<ArtistsResponse>(() =>
       this.http.get<ArtistsResponse>(
         `${this.apiURL}/search?q=${query}&type=artist&limit=${limit}`,
@@ -101,9 +99,9 @@ export class SpotifyService {
       if (!authorized) return undefined;
     }
 
-    console.log(request);
-
-    return firstValueFrom(request());
+    return firstValueFrom(request()).catch(() => {
+      return undefined;
+    });
   }
 
   private getImageUrl(images: { url: string }[]): string {
@@ -129,19 +127,6 @@ export class SpotifyService {
 
 type Request<T> = () => Observable<T>;
 
-interface ArtistsResponse {
-  artists: {
-    items: {
-      name: string;
-      id: string;
-      popularity: number;
-      images: {
-        url: string;
-      }[];
-    }[];
-  };
-}
-
 interface ArtistResponse {
   name: string;
   id: string;
@@ -149,4 +134,10 @@ interface ArtistResponse {
   images: {
     url: string;
   }[];
+}
+
+interface ArtistsResponse {
+  artists: {
+    items: ArtistResponse[];
+  };
 }
