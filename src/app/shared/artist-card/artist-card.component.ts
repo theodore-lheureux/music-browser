@@ -8,10 +8,10 @@ import { Artist } from 'src/app/models/artist.class';
 import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
-  selector: 'app-artist',
-  templateUrl: './artist.component.html',
+  selector: 'app-artist-card',
+  templateUrl: './artist-card.component.html',
 })
-export class ArtistComponent {
+export class ArtistCardComponent {
   faXmark = faXmark;
   faStarSolid = faStarSolid;
   faStarRegular = faStarRegular;
@@ -38,7 +38,6 @@ export class ArtistComponent {
   }
 
   toggleFavorite(): void {
-    console.log('toggleFavorite ' + this.isFavorite());
     if (this.isFavorite()) this.favorites.removeFavorite(this.artist);
     else this.favorites.addFavorite(this.artist);
   }

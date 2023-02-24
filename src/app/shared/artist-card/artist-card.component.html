@@ -1,4 +1,4 @@
-<div
+<a
     [ngClass]="
         artist.selected && selectable
             ? 'selectedArtist scale-[101%] bg-slate-500'
@@ -7,12 +7,15 @@
     class="mb-2 flex h-full w-full cursor-pointer select-none rounded-md p-{{
         padding
     }} align-middle transition-transform"
+    [routerLink]="'/artist/' + artist.id"
 >
     <img
         class="h-{{ imgSize }} w-{{ imgSize }} flex-none rounded-{{
             imgRoundness
-        }}"
+        }} object-fill"
         [src]="artist.image"
+        [alt]="artist.name"
+        draggable="false"
     />
     <div class="ml-4 flex flex-none flex-col justify-center">
         <div class="text-{{ textSize }} text-secondaryText">
@@ -25,7 +28,11 @@
         class="mr-3 flex flex-none flex-col justify-center align-middle text-gray-400 hover:text-secondaryText"
     >
         <fa-icon
-            (click)="toggleFavorite(); $event.stopPropagation()"
+            (click)="
+                $event.preventDefault();
+                $event.stopPropagation();
+                toggleFavorite()
+            "
             [icon]="isFavorite() ? faStarSolid : faStarRegular"
             [class.text-yellow-400]="isFavorite()"
             [class.hover:text-yellow-600]="isFavorite()"
@@ -36,8 +43,12 @@
         class="mr-3 flex flex-none flex-col justify-center align-middle text-gray-400 hover:text-secondaryText"
     >
         <fa-icon
-            (click)="deleteArtist(); $event.stopPropagation()"
+            (click)="
+                $event.preventDefault();
+                $event.stopPropagation();
+                deleteArtist()
+            "
             [icon]="faXmark"
         ></fa-icon>
     </div>
-</div>
+</a>
