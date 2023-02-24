@@ -16,9 +16,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LanguagePickerComponent } from './layout/language-picker/language-picker.component';
 import { IndexComponent } from './routes/index/index.component';
 import { SearchbarComponent } from './shared/searchbar/searchbar.component';
-import { ArtistComponent } from './shared/artist/artist.component';
+import { ArtistCardComponent } from './shared/artist/artist-card.component';
 import { FormsModule } from '@angular/forms';
 import { AsideComponent } from './layout/aside/aside.component';
+import { ArtistComponent } from './routes/artist/artist.component';
+import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { AsideComponent } from './layout/aside/aside.component';
     SearchbarComponent,
     ArtistComponent,
     AsideComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
