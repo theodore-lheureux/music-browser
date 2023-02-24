@@ -17,8 +17,10 @@ export class FavoritesService {
   addFavorite(artist: Artist): void {
     if (this.isFavorite(artist.id)) return;
 
-    artist.selected = false;
-    this.favorites.push(artist);
+    const copy: Artist = { ...artist };
+    copy.selected = false;
+
+    this.favorites.push(copy);
   }
 
   removeFavorite(artist: Artist): void {
