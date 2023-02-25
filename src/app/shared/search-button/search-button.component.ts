@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { FavoritesService } from 'src/app/services/favorites.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search-button',
@@ -10,9 +10,9 @@ import { FavoritesService } from 'src/app/services/favorites.service';
 export class SearchButtonComponent {
   faMagnifyingGlass = faMagnifyingGlass;
 
-  constructor(public favorites: FavoritesService) {}
+  constructor(public search: SearchService) {}
 
   showSearchbar(): void {
-    this.favorites.searchbarShown.isShown = true;
+    this.search.searchbarShown.value = true;
   }
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Artist } from 'src/app/models/artist.class';
 import { FavoritesService } from 'src/app/services/favorites.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-aside',
@@ -13,7 +14,10 @@ export class AsideComponent implements OnInit {
 
   @Input() currentArtist: Artist | undefined;
 
-  constructor(public favorites: FavoritesService) {}
+  constructor(
+    public favorites: FavoritesService,
+    private search: SearchService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.favoritesList = this.favorites.getFavorites();
@@ -24,6 +28,6 @@ export class AsideComponent implements OnInit {
   }
 
   showSearchbar(): void {
-    this.favorites.searchbarShown.isShown = true;
+    this.search.searchbarShown.value = true;
   }
 }

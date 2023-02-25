@@ -14,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Artist } from '../../models/artist.class';
 import { SpotifyService } from 'src/app/services/spotify.service';
-import { FavoritesService } from 'src/app/services/favorites.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -35,7 +35,7 @@ export class SearchbarComponent
 
   constructor(
     private spotify: SpotifyService,
-    private favorites: FavoritesService
+    private searchService: SearchService
   ) {
     this.recentArtists = JSON.parse(
       window.localStorage.getItem('recentSearches') ?? '[]'
@@ -100,7 +100,7 @@ export class SearchbarComponent
   }
 
   closeSearch() {
-    this.favorites.searchbarShown.isShown = false;
+    this.searchService.searchbarShown.value = false;
   }
 
   bgClick(event: MouseEvent) {

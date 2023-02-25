@@ -8,7 +8,6 @@ export class FavoritesService {
   private favorites: Artist[] = JSON.parse(
     localStorage.getItem('favorites') ?? '[]'
   );
-  searchbarShown = { isShown: false };
 
   getFavorites(): Artist[] {
     return this.favorites;

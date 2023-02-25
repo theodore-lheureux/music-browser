@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FavoritesService } from './services/favorites.service';
+import { SearchService } from './services/search.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  searchbarShown = { isShown: false };
+  searchbarShown = { value: false };
 
   constructor(
     public translator: TranslateService,
-    private favorites: FavoritesService
+    private search: SearchService
   ) {}
 
   ngOnInit(): void {
-    this.searchbarShown = this.favorites.searchbarShown;
+    this.searchbarShown = this.search.searchbarShown;
   }
 }
