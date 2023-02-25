@@ -8,10 +8,12 @@ const routes: Routes = [
   {
     path: 'index',
     component: IndexComponent,
+    data: { animation: 'index' },
   },
   {
     path: 'artist/:id',
     component: ArtistComponent,
+    data: { animation: 'artist' },
   },
   {
     path: '',

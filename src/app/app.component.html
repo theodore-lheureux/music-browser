@@ -2,7 +2,9 @@
 <app-aside></app-aside>
 
 <main class="bg-primary pt-[5.5vh] text-secondaryText">
-    <router-outlet></router-outlet>
+    <div [@routeAnimations]="prepareRoute(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+    </div>
 </main>
 
 <app-searchbar *ngIf="searchbarShown.value"></app-searchbar>

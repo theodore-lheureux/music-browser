@@ -1,3 +1,11 @@
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Album } from 'src/app/models/album.class';
@@ -7,6 +15,25 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
+  animations: [
+    trigger('child', [
+      transition('* => *', [
+        query(
+          ':enter',
+          [
+            style({ opacity: 0, transform: 'none' }),
+            stagger(50, [
+              animate(
+                '0.5s ease-in-out',
+                style({ opacity: 1, transform: 'none' })
+              ),
+            ]),
+          ],
+          { optional: true }
+        ),
+      ]),
+    ]),
+  ],
 })
 export class ArtistComponent implements OnInit {
   artistId: string;
