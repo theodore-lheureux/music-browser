@@ -6,10 +6,11 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Album } from 'src/app/models/album.class';
 import { Artist } from 'src/app/models/artist.class';
+import { SearchService } from 'src/app/services/search.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
@@ -35,13 +36,14 @@ import { SpotifyService } from 'src/app/services/spotify.service';
     ]),
   ],
 })
-export class ArtistComponent implements OnInit {
+export class ArtistComponent implements OnInit, OnDestroy {
   artistId: string;
   artist: Artist | undefined;
   albums: Album[] = [];
 
   constructor(
     private spotify: SpotifyService,
+    private search: SearchService,
     route: ActivatedRoute,
     public router: Router
   ) {
@@ -64,13 +66,17 @@ export class ArtistComponent implements OnInit {
       return;
     }
 
+    this.search.setCurrentArtist(this.artist);
     await this.fillAlbums();
+  }
+
+  ngOnDestroy(): void {
+    this.search.setCurrentArtist(undefined);
   }
 
   async fillAlbums(): Promise<void> {
     this.albums = await this.spotify.getArtistAlbums(this.artistId, 50, 0);
 
-    // sort albums by release date
     this.albums.sort((a, b) => {
       if (a.releaseDate > b.releaseDate) return 1;
       if (a.releaseDate < b.releaseDate) return -1;

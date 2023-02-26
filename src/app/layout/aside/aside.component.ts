@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Artist } from 'src/app/models/artist.class';
-import { FavoritesService } from 'src/app/services/favorites.service';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -10,22 +9,13 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class AsideComponent implements OnInit {
   faMagnifyingGlass = faMagnifyingGlass;
-  favoritesList: Artist[] = [];
+  artistList: Artist[] = [];
 
-  constructor(
-    public favorites: FavoritesService,
-    private search: SearchService
-  ) {}
+  constructor(private search: SearchService) {}
 
   async ngOnInit(): Promise<void> {
-    this.favoritesList = this.favorites.getFavorites();
-  }
-
-  addToFavorites(artist: Artist): void {
-    this.favorites.addFavorite(artist);
-  }
-
-  showSearchbar(): void {
-    this.search.searchbarShown.value = true;
+    this.search.artistListChanged$.subscribe((artistList) => {
+      this.artistList = artistList;
+    });
   }
 }

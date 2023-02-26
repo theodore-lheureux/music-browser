@@ -6,7 +6,8 @@
     "
     class="mb-2 flex h-full w-full cursor-pointer select-none rounded-md p-{{
         padding
-    }} align-middle transition-transform"
+    }} align-middle transition-all duration-300"
+    [class.hover:bg-hover]="hoverable && !artist.selected"
     [routerLink]="'/artist/' + artist.id"
 >
     <img

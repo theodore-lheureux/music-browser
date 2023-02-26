@@ -3,10 +3,11 @@
 >
     <section><app-search-button></app-search-button></section>
     <section>
-        <div *ngFor="let artist of favoritesList" class="mt-2">
+        <div *ngFor="let artist of artistList" class="mt-2">
             <app-artist-card
                 class="h-20 bg-secondary"
                 [artist]="artist"
+                [hoverable]="true"
                 backgroundColor="bg-secondary"
             ></app-artist-card>
         </div>

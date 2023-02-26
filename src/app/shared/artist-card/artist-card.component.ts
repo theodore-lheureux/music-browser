@@ -18,6 +18,7 @@ export class ArtistCardComponent {
   @Input() artist!: Artist;
   @Input() deletable = false;
   @Input() selectable = true;
+  @Input() hoverable = false;
   @Input() imgSize = 12;
   @Input() padding = 4;
   @Input() textSize = 'lg';
