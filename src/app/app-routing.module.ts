@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './routes/index/index.component';
 import { ArtistComponent } from './routes/artist/artist.component';
+import { AlbumComponent } from './routes/album/album.component';
 import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -16,6 +17,11 @@ const routes: Routes = [
     data: { animation: 'artist' },
   },
   {
+    path: 'album/:id',
+    component: AlbumComponent,
+    data: { animation: 'album' },
+  },
+  {
     path: '',
     redirectTo: 'index',
     pathMatch: 'full',
@@ -23,6 +29,7 @@ const routes: Routes = [
   {
     path: '**',
     component: PageNotFoundComponent,
+    data: { animation: 'pageNotFound' },
   },
 ];
 

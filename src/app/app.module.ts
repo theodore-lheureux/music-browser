@@ -23,6 +23,8 @@ import { ArtistComponent } from './routes/artist/artist.component';
 import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.component';
 import { AlbumCardComponent } from './shared/album-card/album-card.component';
 import { SearchButtonComponent } from './shared/search-button/search-button.component';
+import { AlbumComponent } from './routes/album/album.component';
+import { SongCardComponent } from './shared/song-card/song-card.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { SearchButtonComponent } from './shared/search-button/search-button.comp
     PageNotFoundComponent,
     AlbumCardComponent,
     SearchButtonComponent,
+    AlbumComponent,
+    SongCardComponent,
   ],
   imports: [
     BrowserModule,

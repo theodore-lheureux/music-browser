@@ -9,7 +9,7 @@ import {
 } from '@angular/animations';
 
 export const routeAnimations = trigger('routeAnimations', [
-  transition('index => artist', [
+  transition('index => artist, artist => album, index => album', [
     query(
       ':enter, :leave',
       [
@@ -49,7 +49,7 @@ export const routeAnimations = trigger('routeAnimations', [
     ]),
     query(':enter', animateChild(), { optional: true }),
   ]),
-  transition('artist => index', [
+  transition('artist => index, album => artist, album => index', [
     query(
       ':enter, :leave',
       [

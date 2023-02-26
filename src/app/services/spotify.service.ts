@@ -4,6 +4,7 @@ import { Artist } from '../models/artist.class';
 import { Observable, firstValueFrom } from 'rxjs';
 import { clientId, clientSecret } from '../app.config';
 import { Album } from '../models/album.class';
+import { Song } from '../models/song.class';
 
 @Injectable({
   providedIn: 'root',
@@ -87,6 +88,41 @@ export class SpotifyService {
         this.getImageUrl(album.images),
         this.getImageUrlXL(album.images)
       );
+    });
+  }
+
+  public async getAlbum(id: string): Promise<Album | undefined> {
+    const response = await this.executeRequest<AlbumResponse>(() =>
+      this.http.get<AlbumResponse>(`${this.apiURL}/albums/${id}`, {
+        headers: { Authorization: `Bearer ${this.token}` },
+      })
+    );
+
+    if (!response) return undefined;
+
+    return new Album(
+      response.id,
+      response.name,
+      new Date(response.release_date),
+      this.getImageUrl(response.images),
+      this.getImageUrlXL(response.images)
+    );
+  }
+
+  async getAlbumSongs(album: Album): Promise<Song[]> {
+    const response = await this.executeRequest<AlbumSongsResponse>(() =>
+      this.http.get<AlbumSongsResponse>(
+        `${this.apiURL}/albums/${album.id}/tracks`,
+        {
+          headers: { Authorization: `Bearer ${this.token}` },
+        }
+      )
+    );
+
+    if (!response) return [];
+
+    return response.items.map((song) => {
+      return new Song(song.id, song.name, song.duration_ms, album);
     });
   }
 
@@ -185,4 +221,14 @@ interface AlbumResponse {
 
 interface ArtistAlbumsResponse {
   items: AlbumResponse[];
+}
+
+interface SongResponse {
+  name: string;
+  id: string;
+  duration_ms: number;
+}
+
+interface AlbumSongsResponse {
+  items: SongResponse[];
 }

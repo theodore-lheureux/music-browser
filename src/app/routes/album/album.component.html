@@ -1,0 +1,9 @@
+<h1 class="hidden">{{ album?.name }} songs</h1>
+
+<section class="scroll ml-0 md:ml-80 xl:ml-96 2xl:ml-[28rem]" #songssList>
+    <div [@child]="songs.length" class="grid grid-cols-1 gap-2 p-2">
+        <div *ngFor="let song of songs" class="song-card">
+            <app-song-card [song]="song"></app-song-card>
+        </div>
+    </div>
+</section>
