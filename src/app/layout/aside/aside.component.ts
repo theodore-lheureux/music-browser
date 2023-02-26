@@ -14,6 +14,7 @@ export class AsideComponent implements OnInit {
   constructor(private search: SearchService) {}
 
   async ngOnInit(): Promise<void> {
+    this.artistList = await this.search.getArtistList();
     this.search.artistListChanged$.subscribe((artistList) => {
       this.artistList = artistList;
     });
