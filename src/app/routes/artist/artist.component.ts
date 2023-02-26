@@ -65,6 +65,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
       this.router.navigate(['/page-not-found']);
       return;
     }
+    document.title = this.artist.name + ' - Spotify';
 
     this.search.setCurrentArtist(this.artist);
     await this.fillAlbums();

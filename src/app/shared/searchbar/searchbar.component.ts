@@ -108,7 +108,7 @@ export class SearchbarComponent
   }
 
   scrollToSelected() {
-    const selected = document.querySelector('.selectedArtist');
+    const selected = document.querySelector('#searchbar > * .selectedArtist');
     if (selected)
       selected.scrollIntoView({
         behavior: 'smooth',
