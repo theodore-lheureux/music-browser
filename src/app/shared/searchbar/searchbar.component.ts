@@ -15,11 +15,36 @@ import {
 import { Artist } from '../../models/artist.class';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { SearchService } from 'src/app/services/search.service';
+import {
+  animate,
+  group,
+  query,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.scss'],
+  animations: [
+    trigger('bgAnimation', [
+      transition('false => true', [
+        group([
+          query('.searchbar', [
+            animate('300ms ease-in-out'),
+            style({ transform: 'translateY(-112%)' }),
+          ]),
+          query(':self', [
+            animate('300ms ease-in-out'),
+            style({ backdropFilter: 'blur(4px) brightness(0.75) opacity(0)' }),
+          ]),
+        ]),
+      ]),
+    ]),
+  ],
 })
 export class SearchbarComponent
   implements AfterViewChecked, AfterViewInit, OnInit
@@ -29,13 +54,15 @@ export class SearchbarComponent
   @ViewChildren('searchInput') searchInputElement!: QueryList<ElementRef>;
   searchValue = '';
   loading = false;
+  hide = false;
   selectedIndex = -1;
   recentArtists: Artist[];
   artists: Artist[];
 
   constructor(
     private spotify: SpotifyService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    public router: Router
   ) {
     this.recentArtists = JSON.parse(
       window.localStorage.getItem('recentSearches') ?? '[]'
@@ -65,8 +92,6 @@ export class SearchbarComponent
     this.artists = await this.spotify.getArtists(this.searchValue);
     this.loading = false;
 
-    console.log(this.artists);
-
     this.selectFirstOrNone();
   }
 
@@ -87,6 +112,8 @@ export class SearchbarComponent
       JSON.stringify(this.recentArtists)
     );
 
+    this.router.navigate(['/artist', this.artists[this.selectedIndex].id]);
+
     this.closeSearch();
   }
 
@@ -102,7 +129,11 @@ export class SearchbarComponent
   }
 
   closeSearch() {
-    this.searchService.searchbarShown.value = false;
+    this.hide = true;
+  }
+
+  animationDone() {
+    if (this.hide) this.searchService.searchbarShown.value = false;
   }
 
   bgClick(event: MouseEvent) {

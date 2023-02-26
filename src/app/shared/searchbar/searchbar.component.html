@@ -1,8 +1,10 @@
 <div
     id="searchbar"
-    class="fixed top-0 z-50 flex h-full w-full justify-center backdrop-blur-sm backdrop-brightness-75"
+    class="fixed top-0 z-50 flex h-full w-full justify-center"
     (click)="bgClick($event)"
     aria-labelledby="searchbar-button"
+    [@bgAnimation]="hide"
+    (@bgAnimation.done)="animationDone()"
 >
     <div class="mt-[8vh] h-fit w-fit">
         <div
