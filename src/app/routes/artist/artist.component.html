@@ -1,12 +1,9 @@
 <h1 class="hidden">{{ artist?.name }}'s albums</h1>
 
-<section
-    class="scroll ml-0 md:ml-[33.333333%] lg:ml-[25%] xl:ml-[20%]"
-    #albumsList
->
+<section class="scroll ml-0 md:ml-80 xl:ml-96 2xl:ml-[28rem]" #albumsList>
     <div
         [@child]="albums.length"
-        class="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+        class="grid grid-cols-2 gap-2 p-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
     >
         <div *ngFor="let album of albums" class="album-card">
             <app-album-card [album]="album"></app-album-card>

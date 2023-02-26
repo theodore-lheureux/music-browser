@@ -15,7 +15,7 @@ export const routeAnimations = trigger('routeAnimations', [
       [
         style({
           position: 'absolute',
-          top: '5.5vh',
+          top: '3.5rem',
           left: 0,
           width: '100%',
         }),
@@ -40,7 +40,7 @@ export const routeAnimations = trigger('routeAnimations', [
       [
         style({
           position: 'absolute',
-          top: '5.5vh',
+          top: '3.5rem',
           left: 0,
           width: '100%',
         }),

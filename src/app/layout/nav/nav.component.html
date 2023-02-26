@@ -1,11 +1,11 @@
 <nav
-    class="fixed z-40 h-[5.5vh] w-full select-none border-b-[1px] border-b-secondaryText bg-primary"
+    class="fixed z-40 h-14 w-full select-none border-b-[1px] border-b-secondaryText bg-primary"
 >
     <ul
         class="flex h-full w-full items-center justify-between text-secondaryText"
     >
         <li
-            class="flex h-full w-1/4 cursor-pointer items-center justify-center hover:bg-hover"
+            class="flex h-full w-20 flex-initial cursor-pointer items-center justify-center hover:bg-hover md:w-80 xl:w-96 2xl:w-[28rem]"
         >
             <a
                 class="flex h-full w-full items-center justify-center"
@@ -17,10 +17,12 @@
                 <p class="ml-2 hidden md:block" translate>nav.home</p>
             </a>
         </li>
-        <li class="h-full w-full p-2 pr-6 md:hidden">
+        <li class="h-full flex-grow p-2 md:hidden">
             <app-search-button></app-search-button>
         </li>
-        <li class="flex h-full w-1/4 flex-initial items-center justify-center">
+        <li
+            class="flex h-full w-20 flex-initial items-center justify-center md:w-80 xl:w-96 2xl:w-[28rem]"
+        >
             <app-language-picker></app-language-picker>
         </li>
     </ul>
