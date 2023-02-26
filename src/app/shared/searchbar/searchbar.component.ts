@@ -56,6 +56,7 @@ export class SearchbarComponent
   loading = false;
   hide = false;
   selectedIndex = -1;
+  lastKeyDown = 0;
   recentArtists: Artist[];
   artists: Artist[];
 
@@ -142,9 +143,15 @@ export class SearchbarComponent
 
   scrollToSelected() {
     const selected = document.querySelector('#searchbar > * .selectedArtist');
-    if (selected)
+    if (selected && Date.now() - this.lastKeyDown < 150)
       selected.scrollIntoView({
         behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    else if (selected)
+      selected.scrollIntoView({
+        behavior: 'auto',
         block: 'nearest',
         inline: 'nearest',
       });
@@ -189,6 +196,9 @@ export class SearchbarComponent
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
+    if (Date.now() - this.lastKeyDown < 150) return;
+    this.lastKeyDown = Date.now();
+
     if (event.key === 'ArrowUp') {
       event.preventDefault();
       this.selectPrevious();
