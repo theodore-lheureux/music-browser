@@ -143,7 +143,7 @@ export class SpotifyService {
       return images[0].url;
     }
 
-    return '';
+    return './assets/images/artist-placeholder.png';
   }
 
   private getImageUrlXL(images: { url: string }[]): string {
@@ -153,7 +153,7 @@ export class SpotifyService {
       return images[0].url;
     }
 
-    return '';
+    return './assets/images/artist-placeholder.png';
   }
 }
 

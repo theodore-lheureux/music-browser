@@ -65,6 +65,8 @@ export class SearchbarComponent
     this.artists = await this.spotify.getArtists(this.searchValue);
     this.loading = false;
 
+    console.log(this.artists);
+
     this.selectFirstOrNone();
   }
 
