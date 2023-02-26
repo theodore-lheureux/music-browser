@@ -22,11 +22,11 @@ import { SpotifyService } from 'src/app/services/spotify.service';
         query(
           ':enter',
           [
-            style({ opacity: 0, transform: 'none' }),
-            stagger(50, [
+            style({ filter: 'opacity(0%)', transform: 'none' }),
+            stagger(70, [
               animate(
-                '0.5s ease-in-out',
-                style({ opacity: 1, transform: 'none' })
+                '0.7s ease-in-out',
+                style({ filter: 'none', transform: 'none' })
               ),
             ]),
           ],

@@ -22,15 +22,30 @@ export const routeAnimations = trigger('routeAnimations', [
       ],
       { optional: true }
     ),
-    query(':enter', [style({ left: '100%' })], { optional: true }),
+    query(':enter', [style({ transform: 'translateX(100%)' })], {
+      optional: true,
+    }),
     query(':leave', animateChild(), { optional: true }),
     group([
-      query(':leave', [animate('200ms ease-out', style({ left: '-100%' }))], {
-        optional: true,
-      }),
-      query(':enter', [animate('300ms ease-out', style({ left: '0%' }))], {
-        optional: true,
-      }),
+      query(
+        ':leave',
+        [
+          animate(
+            '400ms ease-in-out',
+            style({ transform: 'translateX(-100%)' })
+          ),
+        ],
+        {
+          optional: true,
+        }
+      ),
+      query(
+        ':enter',
+        [animate('400ms ease-in-out', style({ transform: 'none' }))],
+        {
+          optional: true,
+        }
+      ),
     ]),
     query(':enter', animateChild(), { optional: true }),
   ]),
@@ -47,15 +62,30 @@ export const routeAnimations = trigger('routeAnimations', [
       ],
       { optional: true }
     ),
-    query(':enter', [style({ left: '-100%' })], { optional: true }),
+    query(':enter', [style({ transform: 'translateX(-100%)' })], {
+      optional: true,
+    }),
     query(':leave', animateChild(), { optional: true }),
     group([
-      query(':leave', [animate('200ms ease-out', style({ left: '100%' }))], {
-        optional: true,
-      }),
-      query(':enter', [animate('300ms ease-out', style({ left: '0%' }))], {
-        optional: true,
-      }),
+      query(
+        ':leave',
+        [
+          animate(
+            '400ms ease-in-out',
+            style({ transform: 'translateX(100%)' })
+          ),
+        ],
+        {
+          optional: true,
+        }
+      ),
+      query(
+        ':enter',
+        [animate('400ms ease-in-out', style({ transform: 'none' }))],
+        {
+          optional: true,
+        }
+      ),
     ]),
     query(':enter', animateChild(), { optional: true }),
   ]),
