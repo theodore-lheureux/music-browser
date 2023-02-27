@@ -1,9 +1,39 @@
 <h1 class="hidden">{{ album?.name }} songs</h1>
 
-<section class="scroll ml-0 md:ml-80 xl:ml-96 2xl:ml-[28rem]" #songssList>
-    <div [@child]="songs.length" class="grid grid-cols-1 gap-2 p-2">
-        <div *ngFor="let song of songs" class="song-card">
-            <app-song-card [song]="song"></app-song-card>
+<section
+    class="scroll ml-0 select-none p-2 md:ml-80 xl:ml-96 2xl:ml-[28rem]"
+    #songssList
+>
+    <div class="w-full rounded-md bg-secondary shadow-inner shadow-[#ffffff11]">
+        <div class="flex items-center justify-start p-4">
+            <img
+                [src]="album?.imageXL"
+                class="h-60 w-60 drop-shadow-lg"
+                alt="./assets/images/album-placeholder.png"
+            />
+            <h1
+                class="mx-4 overflow-hidden text-ellipsis text-3xl font-semibold leading-9 sm:whitespace-nowrap sm:leading-loose md:whitespace-normal md:leading-9 lg:whitespace-nowrap lg:leading-loose xl:text-4xl"
+            >
+                {{ album?.name }}
+            </h1>
+        </div>
+
+        <div [@child]="songs.length" class="grid grid-cols-1 gap-2 p-6 pt-0">
+            <div *ngFor="let song of songs; let i = index" class="song-card">
+                <ol role="table" class="">
+                    <li
+                        role="row"
+                        class="flex justify-between px-4 font-normal"
+                    >
+                        <h2 class="grid grid-flow-col grid-cols-1 gap-2">
+                            <span class="flex w-1 justify-end"
+                                >{{ i + 1 }}.</span
+                            >{{ song.name }}
+                        </h2>
+                        <p class="">{{ song.duration | date : "m:ss" }}</p>
+                    </li>
+                </ol>
+            </div>
         </div>
     </div>
 </section>

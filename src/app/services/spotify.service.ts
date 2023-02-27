@@ -86,7 +86,8 @@ export class SpotifyService {
         album.name,
         new Date(album.release_date),
         this.getImageUrl(album.images),
-        this.getImageUrlXL(album.images)
+        this.getImageUrlXL(album.images),
+        album.artists[0].id
       );
     });
   }
@@ -105,7 +106,8 @@ export class SpotifyService {
       response.name,
       new Date(response.release_date),
       this.getImageUrl(response.images),
-      this.getImageUrlXL(response.images)
+      this.getImageUrlXL(response.images),
+      response.artists[0].id
     );
   }
 
@@ -216,6 +218,9 @@ interface AlbumResponse {
   release_date: string;
   images: {
     url: string;
+  }[];
+  artists: {
+    id: string;
   }[];
 }
 
