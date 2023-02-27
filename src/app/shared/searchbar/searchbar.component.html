@@ -8,7 +8,7 @@
 >
     <div class="mt-[8vh] h-fit w-fit">
         <div
-            class="searchbar flex max-h-[60h] min-h-[205px] w-[90vw] max-w-[758px] flex-col rounded-md bg-secondary shadow-inner shadow-[#ffffff12]"
+            class="searchbar flex max-h-[60h] min-h-[205px] w-[90vw] max-w-[758px] flex-col rounded-md bg-secondary shadow-inner shadow-[#ffffff11]"
         >
             <div
                 class="flex flex-initial border-b-[1px] border-b-gray-500 p-4 text-secondaryText"
@@ -35,7 +35,7 @@
             </div>
             <div
                 *ngIf="loading"
-                class="flex h-fit w-full flex-grow animate-pulse flex-col items-center justify-center pt-2 pr-2 pl-2"
+                class="flex h-fit w-full flex-grow animate-pulse flex-col items-center justify-center p-4"
                 aria-busy="true"
             >
                 <div
@@ -62,7 +62,7 @@
             </div>
             <div
                 *ngIf="artists.length > 0 && searchValue.length > 2 && !loading"
-                class="flex max-h-[450px] min-h-[96px] w-full flex-shrink flex-col overflow-y-auto border-t-gray-500 pt-2 pr-2 pl-2"
+                class="p flex max-h-[450px] min-h-[96px] w-full flex-shrink flex-col overflow-y-auto border-t-gray-500 p-4"
             >
                 <app-artist-card
                     *ngFor="let artist of artists"
@@ -75,10 +75,10 @@
                 *ngIf="
                     artists.length > 0 && searchValue.length <= 2 && !loading
                 "
-                class="flex max-h-[450px] min-h-[96px] w-full flex-shrink flex-col overflow-y-auto border-t-gray-500 pt-4 pr-2 pl-2"
+                class="flex max-h-[450px] min-h-[96px] w-full flex-shrink flex-col overflow-y-auto border-t-gray-500 p-4"
             >
                 <h2
-                    class="mb-2 pb-3 pr-2 text-lg font-medium text-secondaryText"
+                    class="mb-2 pb-3 pl-2 text-lg font-medium text-secondaryText"
                     translate
                 >
                     search.recent
