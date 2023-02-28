@@ -18,13 +18,23 @@ export const routeAnimations = trigger('routeAnimations', [
           top: '3.5rem',
           left: 0,
           width: '100%',
+          willChange: 'transform',
         }),
       ],
       { optional: true }
     ),
-    query(':enter', [style({ transform: 'translateX(100%)' })], {
-      optional: true,
-    }),
+    query(
+      ':enter',
+      [
+        style({
+          webkitTransform: 'translateX(100%)',
+          transform: 'translateX(100%)',
+        }),
+      ],
+      {
+        optional: true,
+      }
+    ),
     query(':leave', animateChild(), { optional: true }),
     group([
       query(
@@ -32,7 +42,10 @@ export const routeAnimations = trigger('routeAnimations', [
         [
           animate(
             '400ms ease-in-out',
-            style({ transform: 'translateX(-100%)' })
+            style({
+              webkitTransform: 'translateX(-100%)',
+              transform: 'translateX(-100%)',
+            })
           ),
         ],
         {
@@ -41,7 +54,15 @@ export const routeAnimations = trigger('routeAnimations', [
       ),
       query(
         ':enter',
-        [animate('400ms ease-in-out', style({ transform: 'none' }))],
+        [
+          animate(
+            '400ms ease-in-out',
+            style({
+              webkitTransform: 'none',
+              transform: 'none',
+            })
+          ),
+        ],
         {
           optional: true,
         }
@@ -62,9 +83,18 @@ export const routeAnimations = trigger('routeAnimations', [
       ],
       { optional: true }
     ),
-    query(':enter', [style({ transform: 'translateX(-100%)' })], {
-      optional: true,
-    }),
+    query(
+      ':enter',
+      [
+        style({
+          webkitTransform: 'translateX(-100%)',
+          transform: 'translateX(-100%)',
+        }),
+      ],
+      {
+        optional: true,
+      }
+    ),
     query(':leave', animateChild(), { optional: true }),
     group([
       query(
@@ -72,7 +102,10 @@ export const routeAnimations = trigger('routeAnimations', [
         [
           animate(
             '400ms ease-in-out',
-            style({ transform: 'translateX(100%)' })
+            style({
+              webkitTransform: 'translateX(100%)',
+              transform: 'translateX(100%)',
+            })
           ),
         ],
         {
@@ -81,7 +114,15 @@ export const routeAnimations = trigger('routeAnimations', [
       ),
       query(
         ':enter',
-        [animate('400ms ease-in-out', style({ transform: 'none' }))],
+        [
+          animate(
+            '400ms ease-in-out',
+            style({
+              webkitTransform: 'none',
+              transform: 'none',
+            })
+          ),
+        ],
         {
           optional: true,
         }

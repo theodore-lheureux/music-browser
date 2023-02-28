@@ -1,4 +1,4 @@
-<section class="drop-shadow-md">
+<section class="relative transform-gpu drop-shadow-md">
     <button
         id="language-selector-button"
         class="flex items-center space-x-2 rounded-md bg-secondary py-1 px-3 text-xs font-semibold outline-0 transition-colors hover:bg-hover"
@@ -20,7 +20,7 @@
         ></fa-icon>
     </button>
     <div
-        class="absolute -left-[72px] top-6 overflow-hidden lg:left-0"
+        class="absolute right-0 top-6 w-fit overflow-hidden lg:left-0"
         [ngClass]="menuOpen ? 'h-[72px]' : 'h-0'"
     >
         <div
@@ -34,6 +34,8 @@
                 (click)="selectEN()"
                 class="flex justify-between rounded-tl-lg px-4 py-2 text-sm transition-colors hover:bg-hover hover:text-white lg:rounded-tr-lg lg:rounded-tl-none"
                 [ngClass]="currentLang == 'EN' ? 'bg-selected' : ''"
+                [ariaCurrent]="currentLang == 'EN'"
+                role="menuitem"
             >
                 <span>English</span>
                 <fa-icon [icon]="faCheck" *ngIf="currentLang == 'EN'"></fa-icon>
@@ -42,6 +44,8 @@
                 (click)="selectFR()"
                 class="flex justify-between rounded-b-lg px-4 py-2 text-sm transition-colors hover:bg-hover hover:text-white"
                 [ngClass]="currentLang == 'FR' ? 'bg-selected' : ''"
+                [ariaCurrent]="currentLang == 'EN'"
+                role="menuitem"
             >
                 <span>Français</span>
                 <fa-icon [icon]="faCheck" *ngIf="currentLang == 'FR'"></fa-icon>

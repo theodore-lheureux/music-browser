@@ -5,14 +5,14 @@
     #songssList
 >
     <div class="w-full rounded-md bg-secondary shadow-inner shadow-[#ffffff11]">
-        <div class="flex items-center justify-start p-4">
+        <div class="flex flex-col items-center justify-start p-4 sm:flex-row">
             <img
                 [src]="album?.imageXL"
-                class="h-60 w-60 drop-shadow-lg"
+                class="h-60 w-60 transform-gpu drop-shadow-lg"
                 alt="./assets/images/album-placeholder.png"
             />
             <h1
-                class="mx-4 overflow-hidden text-ellipsis text-3xl font-semibold sm:whitespace-nowrap sm:leading-loose md:whitespace-normal md:leading-9 xl:whitespace-nowrap xl:text-4xl xl:leading-loose"
+                class="m-4 mb-0 overflow-hidden text-ellipsis text-4xl font-medium sm:whitespace-nowrap sm:leading-loose md:whitespace-normal md:leading-9 xl:whitespace-nowrap xl:text-4xl xl:leading-loose"
             >
                 {{ album?.name }}
             </h1>
@@ -26,9 +26,10 @@
                         class="flex justify-between px-4 font-normal"
                     >
                         <h2 class="grid grid-flow-col grid-cols-1 gap-2">
-                            <span class="flex w-1 justify-end"
+                            <span class="flex w-1 justify-end font-light"
                                 >{{ i + 1 }}.</span
-                            >{{ song.name }}
+                            >
+                            <span class="">{{ song.name }}</span>
                         </h2>
                         <p class="">{{ song.duration | date : "m:ss" }}</p>
                     </li>
