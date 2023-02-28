@@ -1,0 +1,26 @@
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateY(-115%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes backgroundBlur {
+  0% {
+    backdrop-filter: blur(4px) brightness(0.75) opacity(0);
+  }
+  100% {
+    backdrop-filter: blur(4px) brightness(0.75) opacity(1);
+  }
+}
+
+.video-player {
+  animation: 300ms ease-in-out 0s 1 slideInFromLeft;
+}
+
+#video-player {
+  animation: 300ms ease-in-out 0s 1 backgroundBlur;
+  backdrop-filter: blur(4px) brightness(0.75) opacity(1);
+}

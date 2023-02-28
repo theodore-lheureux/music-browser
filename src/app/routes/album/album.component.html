@@ -24,6 +24,7 @@
                     <li
                         role="row"
                         class="flex justify-between px-4 font-normal"
+                        (click)="playSong(song)"
                     >
                         <h2 class="grid grid-flow-col grid-cols-1 gap-2">
                             <span class="flex w-1 justify-end font-light"
@@ -37,4 +38,19 @@
             </div>
         </div>
     </div>
+</section>
+
+<section
+    *ngIf="videoUrl"
+    id="video-player"
+    class="fixed inset-0 z-50 flex h-[100vh] w-full items-center justify-center overflow-hidden pb-[10vh]"
+    (click)="bgClick($event)"
+>
+    <iframe
+        [src]="videoUrl | safe"
+        class="video-player mt-[10vh] h-[360px] w-[640px] bg-black 2xl:h-[720px] 2xl:w-[1280px]"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+    ></iframe>
 </section>

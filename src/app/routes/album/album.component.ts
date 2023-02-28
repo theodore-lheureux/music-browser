@@ -5,21 +5,25 @@ import { Artist } from 'src/app/models/artist.class';
 import { Song } from 'src/app/models/song.class';
 import { SearchService } from 'src/app/services/search.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { YoutubeService } from 'src/app/services/youtube.service';
 
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
+  styleUrls: ['./album.component.scss'],
 })
 export class AlbumComponent implements OnInit, OnDestroy {
   albumId: string;
   album: Album | undefined;
   artist: Artist | undefined;
   songs: Song[] = [];
+  videoUrl: string | undefined;
 
   constructor(
     private spotify: SpotifyService,
     public router: Router,
     public search: SearchService,
+    public youtube: YoutubeService,
     route: ActivatedRoute
   ) {
     this.albumId = route.snapshot.params['id'];
@@ -50,5 +54,21 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.search.setCurrentArtist(undefined);
+  }
+
+  async playSong(song: Song): Promise<void> {
+    const video = await this.youtube.getSong(
+      song.name,
+      this.artist?.name ?? ''
+    );
+
+    if (!video) return;
+
+    if (video.items.length > 0)
+      this.videoUrl = `https://www.youtube.com/embed/${video.items[0].id.videoId}`;
+  }
+
+  bgClick(event: MouseEvent) {
+    if (event.target === event.currentTarget) this.videoUrl = undefined;
   }
 }
