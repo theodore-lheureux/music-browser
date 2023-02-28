@@ -12,6 +12,7 @@ import { Song } from '../models/song.class';
 export class SpotifyService {
   private apiURL = 'https://api.spotify.com/v1';
   private token: string | undefined;
+  private headers: { headers: { Authorization: string } } | undefined;
 
   constructor(private http: HttpClient) {}
 
@@ -23,9 +24,7 @@ export class SpotifyService {
     const response = await this.executeRequest<ArtistsResponse>(() =>
       this.http.get<ArtistsResponse>(
         `${this.apiURL}/search?q=${query}&type=artist&limit=${limit}&offset=${offset}`,
-        {
-          headers: { Authorization: `Bearer ${this.token}` },
-        }
+        this.headers
       )
     );
 
@@ -48,9 +47,10 @@ export class SpotifyService {
 
   public async getArtistById(id: string): Promise<Artist | undefined> {
     const response = await this.executeRequest<ArtistResponse>(() =>
-      this.http.get<ArtistResponse>(`${this.apiURL}/artists/${id}`, {
-        headers: { Authorization: `Bearer ${this.token}` },
-      })
+      this.http.get<ArtistResponse>(
+        `${this.apiURL}/artists/${id}`,
+        this.headers
+      )
     );
 
     if (!response) return undefined;
@@ -72,9 +72,7 @@ export class SpotifyService {
     const response = await this.executeRequest<ArtistAlbumsResponse>(() =>
       this.http.get<ArtistAlbumsResponse>(
         `${this.apiURL}/artists/${id}/albums?limit=${limit}&offset=${offset}&include_groups=album&market=CA`,
-        {
-          headers: { Authorization: `Bearer ${this.token}` },
-        }
+        this.headers
       )
     );
 
@@ -94,9 +92,7 @@ export class SpotifyService {
 
   public async getAlbum(id: string): Promise<Album | undefined> {
     const response = await this.executeRequest<AlbumResponse>(() =>
-      this.http.get<AlbumResponse>(`${this.apiURL}/albums/${id}`, {
-        headers: { Authorization: `Bearer ${this.token}` },
-      })
+      this.http.get<AlbumResponse>(`${this.apiURL}/albums/${id}`, this.headers)
     );
 
     if (!response) return undefined;
@@ -115,9 +111,7 @@ export class SpotifyService {
     const response = await this.executeRequest<AlbumSongsResponse>(() =>
       this.http.get<AlbumSongsResponse>(
         `${this.apiURL}/albums/${album.id}/tracks`,
-        {
-          headers: { Authorization: `Bearer ${this.token}` },
-        }
+        this.headers
       )
     );
 
@@ -156,6 +150,9 @@ export class SpotifyService {
     if (response != null) {
       if (response.access_token != null) {
         this.token = response.access_token;
+        this.headers = {
+          headers: { Authorization: `Bearer ${this.token}` },
+        };
         return true;
       }
     }

@@ -27,7 +27,6 @@ export const routeAnimations = trigger('routeAnimations', [
       ':enter',
       [
         style({
-          webkitTransform: 'translateX(100%)',
           transform: 'translateX(100%)',
         }),
       ],
@@ -43,7 +42,6 @@ export const routeAnimations = trigger('routeAnimations', [
           animate(
             '400ms ease-in-out',
             style({
-              webkitTransform: 'translateX(-100%)',
               transform: 'translateX(-100%)',
             })
           ),
@@ -58,7 +56,6 @@ export const routeAnimations = trigger('routeAnimations', [
           animate(
             '400ms ease-in-out',
             style({
-              webkitTransform: 'none',
               transform: 'none',
             })
           ),
@@ -87,7 +84,6 @@ export const routeAnimations = trigger('routeAnimations', [
       ':enter',
       [
         style({
-          webkitTransform: 'translateX(-100%)',
           transform: 'translateX(-100%)',
         }),
       ],
@@ -103,7 +99,6 @@ export const routeAnimations = trigger('routeAnimations', [
           animate(
             '400ms ease-in-out',
             style({
-              webkitTransform: 'translateX(100%)',
               transform: 'translateX(100%)',
             })
           ),
@@ -118,7 +113,6 @@ export const routeAnimations = trigger('routeAnimations', [
           animate(
             '400ms ease-in-out',
             style({
-              webkitTransform: 'none',
               transform: 'none',
             })
           ),
