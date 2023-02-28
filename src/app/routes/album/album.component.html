@@ -23,7 +23,7 @@
                 <ol role="table" class="">
                     <li
                         role="row"
-                        class="flex justify-between px-4 font-normal"
+                        class="flex cursor-pointer justify-between px-4 font-normal hover:text-hover"
                         (click)="playSong(song)"
                     >
                         <h2 class="grid grid-flow-col grid-cols-1 gap-2">
@@ -46,9 +46,14 @@
     class="fixed inset-0 z-50 flex h-[100vh] w-full items-center justify-center overflow-hidden pb-[10vh]"
     (click)="bgClick($event)"
 >
+    <fa-icon
+        [icon]="faXmark"
+        class="absolute top-4 left-4 cursor-pointer hover:text-hover"
+        (click)="videoUrl = undefined"
+    ></fa-icon>
     <iframe
         [src]="videoUrl | safe"
-        class="video-player mt-[10vh] h-[360px] w-[640px] bg-black 2xl:h-[720px] 2xl:w-[1280px]"
+        class="video-player mt-[10vh] h-[360px] w-[640px] bg-black drop-shadow-lg 2xl:h-[720px] 2xl:w-[1280px]"
         frameborder="0"
         allow="autoplay; encrypted-media"
         allowfullscreen

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Album } from 'src/app/models/album.class';
 import { Artist } from 'src/app/models/artist.class';
 import { Song } from 'src/app/models/song.class';
@@ -13,6 +14,7 @@ import { YoutubeService } from 'src/app/services/youtube.service';
   styleUrls: ['./album.component.scss'],
 })
 export class AlbumComponent implements OnInit, OnDestroy {
+  faXmark = faXmark;
   albumId: string;
   album: Album | undefined;
   artist: Artist | undefined;
