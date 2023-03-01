@@ -26,6 +26,7 @@ import { SearchButtonComponent } from './shared/search-button/search-button.comp
 import { AlbumComponent } from './routes/album/album.component';
 import { SongCardComponent } from './shared/song-card/song-card.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { ConcertsComponent } from './routes/concerts/concerts.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SafePipe } from './pipes/safe.pipe';
     AlbumComponent,
     SongCardComponent,
     SafePipe,
+    ConcertsComponent,
   ],
   imports: [
     BrowserModule,

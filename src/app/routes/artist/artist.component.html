@@ -1,9 +1,15 @@
 <h1 class="hidden">{{ artist?.name }}'s albums</h1>
 
-<section class="scroll ml-0 md:ml-80 xl:ml-96 2xl:ml-[28rem]" #albumsList>
+<section class="scroll ml-0 p-2 md:ml-80 xl:ml-96 2xl:ml-[28rem]" #albumsList>
+    <a
+        *ngIf="artist"
+        [routerLink]="'/concerts/' + artist.id"
+        class="mb-2 block w-full rounded-md bg-secondary p-2 text-center text-secondaryText shadow-inner shadow-[#ffffff11] transition-all duration-300 hover:bg-hover"
+        >Artist's concerts</a
+    >
     <div
         [@child]="albums.length"
-        class="grid grid-cols-2 gap-2 p-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+        class="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
     >
         <div *ngFor="let album of albums" class="album-card">
             <app-album-card [album]="album"></app-album-card>

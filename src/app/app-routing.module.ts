@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './routes/index/index.component';
 import { ArtistComponent } from './routes/artist/artist.component';
 import { AlbumComponent } from './routes/album/album.component';
+import { ConcertsComponent } from './routes/concerts/concerts.component';
 import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: 'album/:id',
     component: AlbumComponent,
     data: { animation: 'album' },
+  },
+  {
+    path: 'concerts/:id',
+    component: ConcertsComponent,
+    data: { animation: 'concerts' },
   },
   {
     path: '',
