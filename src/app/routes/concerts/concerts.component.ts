@@ -5,10 +5,6 @@ import { BandsintownService } from 'src/app/services/bandsintown.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { ConcertResponse } from '../../services/bandsintown.service';
-import { googleAPIKey } from 'src/app/app.config';
-
-const apiURL = 'https://www.google.com/maps/embed/v1/';
-
 @Component({
   selector: 'app-concerts',
   templateUrl: './concerts.component.html',
@@ -18,6 +14,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   artist: Artist | undefined;
   concerts: ConcertResponse[] | undefined;
   googleMapsURL: string | undefined;
+  markerPositions: google.maps.LatLngLiteral[] = [];
 
   constructor(
     public spotify: SpotifyService,
@@ -50,7 +47,13 @@ export class ConcertsComponent implements OnInit, OnDestroy {
 
     this.concerts = await this.bandsintown.getConcerts(this.artist.name);
 
-    this.googleMapsURL = `${apiURL}place?key=${googleAPIKey}&q=${this.concerts[0].venue.latitude},${this.concerts[0].venue.longitude}`;
+    if (this.concerts.length > 0) {
+      this.markerPositions = this.concerts.map((concert) => ({
+        lat: concert.venue.latitude,
+        lng: concert.venue.longitude,
+      }));
+      console.log(this.markerPositions);
+    }
   }
 
   ngOnDestroy(): void {

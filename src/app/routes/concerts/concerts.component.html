@@ -1,15 +1,11 @@
 <section class="scroll ml-10 p-2 md:ml-80 xl:ml-96 2xl:ml-[28rem]">
-    <div class="mb-2 h-4/6 w-full bg-secondary" *ngIf="googleMapsURL">
-        <iframe
-            width="600"
-            height="450"
-            style="border: 0"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-            [src]="googleMapsURL | safe"
-        >
-        </iframe>
+    <div class="mb-2 h-4/6 w-full bg-secondary">
+        <google-map width="500" height="500">
+            <map-marker
+                *ngFor="let concert of markerPositions"
+                [position]="concert"
+            ></map-marker>
+        </google-map>
     </div>
     <div
         class="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"

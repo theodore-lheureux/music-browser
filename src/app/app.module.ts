@@ -27,6 +27,7 @@ import { AlbumComponent } from './routes/album/album.component';
 import { SongCardComponent } from './shared/song-card/song-card.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { ConcertsComponent } from './routes/concerts/concerts.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ConcertsComponent } from './routes/concerts/concerts.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     FormsModule,
+    GoogleMapsModule,
   ],
   providers: [
     CacheResolverService,
