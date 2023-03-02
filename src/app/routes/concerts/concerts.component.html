@@ -1,6 +1,11 @@
 <section class="scroll ml-10 p-2 md:ml-80 xl:ml-96 2xl:ml-[28rem]">
     <div class="mb-2 h-4/6 w-full bg-secondary">
-        <google-map width="500" height="500">
+        <google-map
+            width="100%"
+            class="rounded-lg"
+            [center]="center"
+            [zoom]="zoom"
+        >
             <map-marker
                 *ngFor="let concert of markerPositions"
                 [position]="concert"

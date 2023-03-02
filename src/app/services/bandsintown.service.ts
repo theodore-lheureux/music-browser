@@ -31,7 +31,7 @@ export interface ConcertResponse {
     country: string;
     city: string;
     region: string;
-    latitude: number;
-    longitude: number;
+    latitude: string;
+    longitude: string;
   };
 }

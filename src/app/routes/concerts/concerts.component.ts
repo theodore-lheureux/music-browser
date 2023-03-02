@@ -8,6 +8,7 @@ import { ConcertResponse } from '../../services/bandsintown.service';
 @Component({
   selector: 'app-concerts',
   templateUrl: './concerts.component.html',
+  styleUrls: ['./concerts.component.scss'],
 })
 export class ConcertsComponent implements OnInit, OnDestroy {
   artistId: string;
@@ -15,6 +16,8 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   concerts: ConcertResponse[] | undefined;
   googleMapsURL: string | undefined;
   markerPositions: google.maps.LatLngLiteral[] = [];
+  center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
+  zoom = 2;
 
   constructor(
     public spotify: SpotifyService,
@@ -49,8 +52,8 @@ export class ConcertsComponent implements OnInit, OnDestroy {
 
     if (this.concerts.length > 0) {
       this.markerPositions = this.concerts.map((concert) => ({
-        lat: concert.venue.latitude,
-        lng: concert.venue.longitude,
+        lat: +concert.venue.latitude,
+        lng: +concert.venue.longitude,
       }));
       console.log(this.markerPositions);
     }
