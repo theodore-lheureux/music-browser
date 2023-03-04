@@ -1,4 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Artist } from 'src/app/models/artist.class';
 import { BandsintownService } from 'src/app/services/bandsintown.service';
@@ -13,7 +21,9 @@ import localeFr from '@angular/common/locales/fr';
   templateUrl: './concerts.component.html',
   styleUrls: ['./concerts.component.scss'],
 })
-export class ConcertsComponent implements OnInit, OnDestroy {
+export class ConcertsComponent
+  implements OnInit, OnDestroy, AfterContentChecked
+{
   artistId: string;
   artist: Artist | undefined;
   concerts: ConcertResponse[] | undefined;
@@ -22,6 +32,7 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
   zoom = 2;
   locale: string | undefined;
+  @ViewChildren('map') mapElement!: QueryList<ElementRef>;
 
   constructor(
     public spotify: SpotifyService,
@@ -70,13 +81,67 @@ export class ConcertsComponent implements OnInit, OnDestroy {
         lat: +concert.venue.latitude,
         lng: +concert.venue.longitude,
       }));
-      console.log(this.markerPositions);
     }
   }
 
   ngOnDestroy(): void {
-    this.translate.onLangChange.unsubscribe();
-
     this.search.setCurrentArtist(undefined);
+  }
+
+  ngAfterContentChecked(): void {
+    if (this.markerPositions.length > 0) {
+      const bounds = new google.maps.LatLngBounds();
+      this.markerPositions.forEach((position) => {
+        bounds.extend(position);
+      });
+
+      const newCenter = bounds.getCenter().toJSON();
+
+      if (
+        this.center.lat !== newCenter.lat ||
+        this.center.lng !== newCenter.lng
+      ) {
+        this.center = newCenter;
+      }
+    }
+
+    if (this.mapElement === undefined) return;
+
+    const map = this.mapElement.first?.nativeElement;
+    if (map !== undefined) {
+      const mapHeight = map.clientHeight;
+      const mapBounds = new google.maps.LatLngBounds();
+
+      this.markerPositions.forEach((position) => {
+        mapBounds.extend(position);
+      });
+
+      const zoomLevel = this.getZoom(mapHeight, mapBounds);
+
+      if (zoomLevel !== this.zoom) this.zoom = zoomLevel;
+    }
+  }
+
+  private getZoom(
+    mapHeight: number,
+    mapBounds: google.maps.LatLngBounds
+  ): number {
+    function latitudeToRad(lat: number): number {
+      const sin = Math.sin((lat * Math.PI) / 180);
+      const radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
+      return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
+    }
+
+    const neBound = mapBounds.getNorthEast();
+    const swBound = mapBounds.getSouthWest();
+
+    const latFraction =
+      (latitudeToRad(neBound.lat()) - latitudeToRad(swBound.lat())) / Math.PI;
+    const latZoom = Math.round(
+      Math.log(mapHeight / 256 / latFraction) / Math.LN2
+    );
+    const zoomLvl = Math.min(latZoom, 15);
+
+    return zoomLvl > 2 ? zoomLvl - 1 : 1;
   }
 }

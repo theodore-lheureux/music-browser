@@ -17,5 +17,8 @@
   },
   "index": {
     "text": "No artist selected"
+  },
+  "notfound": {
+    "text": "404 : Page not found"
   }
 }

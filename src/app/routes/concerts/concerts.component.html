@@ -2,7 +2,7 @@
     class="scroll ml-10 p-2 md:ml-80 xl:ml-96 2xl:ml-[28rem]"
     *ngIf="concerts && concerts.length > 0"
 >
-    <div class="mb-2 h-4/6 w-full bg-secondary">
+    <div class="mb-2 h-4/6 w-full bg-secondary" #map>
         <google-map
             width="100%"
             class="before:rounded-lg"
