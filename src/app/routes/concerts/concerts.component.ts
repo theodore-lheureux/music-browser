@@ -5,6 +5,9 @@ import { BandsintownService } from 'src/app/services/bandsintown.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { ConcertResponse } from '../../services/bandsintown.service';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 @Component({
   selector: 'app-concerts',
   templateUrl: './concerts.component.html',
@@ -18,15 +21,19 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   markerPositions: google.maps.LatLngLiteral[] = [];
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
   zoom = 2;
+  locale: string | undefined;
 
   constructor(
     public spotify: SpotifyService,
     public bandsintown: BandsintownService,
+    private translate: TranslateService,
     private search: SearchService,
     private router: Router,
     route: ActivatedRoute
   ) {
     this.artistId = route.snapshot.params['id'];
+
+    registerLocaleData(localeFr, 'fr');
 
     router.events.subscribe(() => {
       const newId = route.snapshot.params['id'];
@@ -38,6 +45,14 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
+    this.locale = this.translate.currentLang;
+
+    this.translate.onLangChange.subscribe(
+      (langChangeEvent: LangChangeEvent) => {
+        this.locale = langChangeEvent.lang;
+      }
+    );
+
     this.artist = await this.spotify.getArtistById(this.artistId);
 
     if (!this.artist) {
@@ -60,6 +75,8 @@ export class ConcertsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.translate.onLangChange.unsubscribe();
+
     this.search.setCurrentArtist(undefined);
   }
 }

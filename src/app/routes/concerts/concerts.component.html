@@ -1,8 +1,11 @@
-<section class="scroll ml-10 p-2 md:ml-80 xl:ml-96 2xl:ml-[28rem]">
+<section
+    class="scroll ml-10 p-2 md:ml-80 xl:ml-96 2xl:ml-[28rem]"
+    *ngIf="concerts && concerts.length > 0"
+>
     <div class="mb-2 h-4/6 w-full bg-secondary">
         <google-map
             width="100%"
-            class="rounded-lg"
+            class="before:rounded-lg"
             [center]="center"
             [zoom]="zoom"
         >
@@ -19,9 +22,20 @@
             *ngFor="let concert of concerts"
             class="mb-2 flex h-full w-full select-none flex-col rounded-md bg-secondary p-4 align-middle shadow-inner shadow-[#ffffff11]"
         >
-            <p>{{ concert.datetime | date : "mediumDate" }}</p>
+            <p>
+                {{
+                    concert.datetime | date : "mediumDate" : undefined : locale
+                }}
+            </p>
             <p class="text-lg">{{ concert.venue.country }}</p>
             <p class="text-sm">{{ concert.venue.city }}</p>
         </div>
     </div>
+</section>
+
+<section
+    class="scroll ml-0 flex w-full justify-center md:pl-80 xl:pl-96 2xl:pl-[28rem]"
+    *ngIf="concerts && concerts.length === 0"
+>
+    <h1 class="pt-[15%] text-xl" translate>concert.no_result</h1>
 </section>

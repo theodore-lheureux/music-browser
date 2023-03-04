@@ -8,7 +8,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CacheInterceptor } from './interceptors/cache-interceptor';
 import { CacheResolverService } from './services/cache-resolver.service';
 import { NavComponent } from './layout/nav/nav.component';
-import { FooterComponent } from './layout/footer/footer.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -33,7 +32,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
   declarations: [
     AppComponent,
     NavComponent,
-    FooterComponent,
     LanguagePickerComponent,
     IndexComponent,
     ArtistComponent,

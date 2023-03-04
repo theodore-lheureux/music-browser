@@ -41,8 +41,8 @@ export class LanguagePickerComponent implements OnInit {
   constructor(private translator: TranslateService) {}
 
   ngOnInit(): void {
-    this.currentLang = this.translator.currentLang ?? 'EN';
-    this.currentLang = this.currentLang.toUpperCase();
+    this.currentLang = localStorage.getItem('language') ?? 'EN';
+    this.translator.use(this.currentLang.toLowerCase());
   }
 
   toggle() {
@@ -52,11 +52,13 @@ export class LanguagePickerComponent implements OnInit {
   selectEN() {
     this.translator.use('en');
     this.currentLang = 'EN';
+    localStorage.setItem('language', 'EN');
   }
 
   selectFR() {
     this.translator.use('fr');
     this.currentLang = 'FR';
+    localStorage.setItem('language', 'FR');
   }
 
   openCloseStart() {

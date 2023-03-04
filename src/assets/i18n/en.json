@@ -10,5 +10,12 @@
     "no_result": "No results found",
     "prompt": "Search for an artist",
     "recent": "Recent searches"
+  },
+  "concert": {
+    "no_results": "No results found",
+    "button": "Artist's concerts"
+  },
+  "index": {
+    "text": "No artist selected"
   }
 }

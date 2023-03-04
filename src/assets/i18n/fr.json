@@ -10,5 +10,12 @@
     "no_result": "Aucun résultat",
     "prompt": "Rechercher un Artiste",
     "recent": "Recherches récentes"
+  },
+  "concert": {
+    "no_result": "Aucun résultat",
+    "button": "Voir les concerts de cet artiste"
+  },
+  "index": {
+    "text": "Aucun artiste sélectionné"
   }
 }
