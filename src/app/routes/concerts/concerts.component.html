@@ -13,9 +13,11 @@
     <div
         class="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
     >
-        <div
+        <a
             *ngFor="let concert of concerts"
-            class="mb-2 flex h-full w-full select-none flex-col rounded-md bg-secondary p-4 align-middle shadow-inner shadow-[#ffffff11]"
+            class="mb-2 flex h-full w-full transform-gpu cursor-pointer select-none flex-col rounded-md bg-secondary p-4 align-middle shadow-inner shadow-[#ffffff11] drop-shadow-xl transition-all duration-300 hover:scale-[101%] hover:bg-gray-500"
+            target="_blank"
+            [href]="concert.url"
         >
             <p>
                 {{
@@ -24,7 +26,7 @@
             </p>
             <p class="text-lg">{{ concert.venue.country }}</p>
             <p class="text-sm">{{ concert.venue.city }}</p>
-        </div>
+        </a>
     </div>
 </section>
 
