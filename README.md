@@ -16,3 +16,10 @@
 - Angular
 - Spotify API
 - BandsInTown API
+
+## Installation
+
+- Clone the repository
+- Run `npm install`
+- Add API keys to app.config.ts
+- Run `ng serve`

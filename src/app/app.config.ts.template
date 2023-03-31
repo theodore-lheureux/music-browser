@@ -1,0 +1,4 @@
+export const clientId = '';
+export const clientSecret = '';
+export const googleAPIKey = '';
+export const bandsInTownAPIKey = '';
